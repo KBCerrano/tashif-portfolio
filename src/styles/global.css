@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap');
+
 :root {
   --color-background: #f4f8fc;
   --color-surface: #ffffff;
@@ -7,8 +9,9 @@
   --color-text-soft: #4b5d75;
   --color-border: #d8e3f0;
 
-  --font-heading: Arial, Helvetica, sans-serif;
-  --font-body: Arial, Helvetica, sans-serif;
+  --font-heading: "Lato", sans-serif;
+  --font-body: "Trebuchet MS", Trebuchet, Arial, sans-serif;
+
 
   --container-width: 1100px;
   --radius-md: 14px;
@@ -58,6 +61,8 @@ h6 {
   margin-top: 0;
   font-family: var(--font-heading);
   line-height: 1.2;
+  font-weight: 700;
+
 }
 
 p {
@@ -67,4 +72,81 @@ p {
 .container {
   width: min(100% - 2rem, var(--container-width));
   margin: 0 auto;
+}
+
+
+
+
+
+/* Base button */
+.btn {
+  position: relative;
+  display: inline-block;
+  padding: 12px 18px;
+  border-radius: 10px;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-align: center;
+  cursor: pointer;
+  overflow: hidden;
+  border: none;
+  transition: all 0.25s ease;
+}
+
+/* Text layer */
+.btn-text {
+  position: relative;
+  z-index: 2;
+}
+
+/* Hover overlay (animated fill) */
+.btn-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.15);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.25s ease;
+  z-index: 1;
+}
+
+/* Hover effect */
+.btn:hover .btn-overlay {
+  transform: scaleX(1);
+}
+
+/* Primary (blue filled) */
+.btn-primary {
+  background: #1d4ed8;
+  color: #ffffff;
+}
+
+/* Primary hover */
+.btn-primary:hover {
+  background: #163ea8;
+  color: #ffffff;
+
+}
+
+/* Secondary (outline) */
+.btn-secondary {
+  background: transparent;
+  color: #1d4ed8;
+  border: 1.5px solid #1d4ed8;
+}
+
+/* Secondary hover */
+.btn-secondary:hover {
+  background: rgba(29, 78, 216, 0.08);
+}
+
+/* Disabled */
+.btn-disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn-disabled:hover {
+  transform: none;
 }
