@@ -1,5 +1,5 @@
-import Header from "./components/Header";
-import ProjectsSection from "./components/ProjectsSection";
+import Header from "./components/Header.jsx";
+import ProjectsSection from "./components/ProjectsSection.jsx";
 import { projects } from "./data/projects";
 
 function App() {
