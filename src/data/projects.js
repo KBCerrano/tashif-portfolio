@@ -23,7 +23,7 @@ export const projects = [
   },
 {
     id: 3,
-    title: "Space Asylum Comic Book Website Project",
+    title: "'Space Asylum' Comic Book Website Project",
     image: "public/images/Space_Asylum_project.png",
     role: "UX Designer & Frontend Developer",
     company: "Freelance",
