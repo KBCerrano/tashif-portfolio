@@ -1,4 +1,6 @@
 import Header from "./components/Header.jsx";
+import useFadeIn from "./hooks/useFadeIn";
+
 import ProjectsSection from "./components/ProjectsSection.jsx";
 
 import { projects } from "./data/projects";
