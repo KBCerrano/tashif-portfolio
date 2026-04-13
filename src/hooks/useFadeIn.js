@@ -2,11 +2,8 @@ import { useEffect } from "react";
 
 function useFadeIn() {
   useEffect(() => {
-    const elements = document.querySelectorAll(
-      "h1, h2, h3, p, .project-card"
-    );
+    const elements = document.querySelectorAll("h1, h2, h3, p, .project-card");
 
-    // Add base class + stagger
     elements.forEach((el, index) => {
       el.classList.add("fade-up");
       el.style.transitionDelay = `${index * 0.05}s`;
@@ -27,9 +24,10 @@ function useFadeIn() {
     elements.forEach((el) => {
       const rect = el.getBoundingClientRect();
 
-      // ✅ FIX: if already visible on load, show immediately
       if (rect.top < window.innerHeight && rect.bottom > 0) {
-        el.classList.add("show");
+        setTimeout(() => {
+          el.classList.add("show");
+        }, 100);
       } else {
         observer.observe(el);
       }

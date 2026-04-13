@@ -2,6 +2,8 @@ import Header from "./components/Header.jsx";
 import useFadeIn from "./hooks/useFadeIn.js";
 import ProjectsSection from "./components/ProjectsSection.jsx";
 import { projects } from "./data/projects.js";
+import Footer from "./components/Footer.jsx";
+
 
 function App() {
   useFadeIn();
@@ -17,6 +19,9 @@ function App() {
           projects={projects}
         />
       </main>
+      
+      <Footer />
+
     </div>
   );
 }
