@@ -1,6 +1,8 @@
 .navbar-wrapper {
-  position: sticky;
+  position: fixed;
   top: 0;
+  left: 0;
+  right: 0;
   z-index: 1000;
 
   display: flex;
@@ -19,7 +21,7 @@
 .navbar {
   width: 100%;
 
-  /* 🔥 Updated: translucent background + blur */
+  /* Updated: translucent background + blur */
   background: rgba(246, 250, 255, 0.75);
   backdrop-filter: blur(20px);
 

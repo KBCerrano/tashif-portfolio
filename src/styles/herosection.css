@@ -1,6 +1,6 @@
 .hero {
   position: relative;
-  padding: 60px 0 40px;
+  padding: 110px 0 90px;
   overflow: hidden;
   background-color: #f6faff;
   isolation: isolate;
@@ -31,6 +31,7 @@ top: -72px; /* exact navbar height */  left: 0;
   display: flex;
   gap: 40px;
   align-items: stretch;
+  margin-top: 30px;
 }
 
 .hero-image-column {
