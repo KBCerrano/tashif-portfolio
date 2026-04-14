@@ -18,7 +18,11 @@
 /* Main container */
 .navbar {
   width: 100%;
-  background: var(--color-surface);
+
+  /* 🔥 Updated: translucent background + blur */
+  background: rgba(246, 250, 255, 0.75);
+  backdrop-filter: blur(20px);
+
   border-bottom: 1px solid var(--color-border);
   border-radius: 0;
 
@@ -34,7 +38,7 @@
 
 /* Name */
 .navbar-name a {
-  font-size: 16px;
+  font-size: 1.8rem; /* ~22pt */
   font-weight: 700;
   color: var(--color-text);
   text-decoration: none;
@@ -124,7 +128,10 @@
     left: 0;
     right: 0;
 
-    background: var(--color-surface);
+    /* 🔥 Updated: translucent mobile menu */
+    background: rgba(246, 250, 255, 0.95);
+    backdrop-filter: blur(8px);
+
     border-bottom: 1px solid var(--color-border);
     padding: 10px 12px;
 

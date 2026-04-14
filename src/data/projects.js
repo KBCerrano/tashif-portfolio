@@ -7,7 +7,7 @@ export const projects = [
     company: "Lumenta Digital",
     date: "January, 2026",
     description:
-      "Built analytics and reporting solutions to monitor authentication events, detect anomalies, and support fraud risk analysis across high-volume digital activity.",
+      "Led the delivery of a 16+ page website, managing the project end-to-end while coordinating cross-time-zone teams and overseeing UI/UX, QA, and deployment to deliver a polished, client-ready product.",
     link: "https://www.lumentadigital.com/"
     },
   {
@@ -19,7 +19,7 @@ export const projects = [
     date: "August, 2025",
     description:
       "Managed website planning, client communication, design review, and delivery coordination for a small business web build focused on usability and lead generation.",
-    link: "https://www.lumentadigital.com/"
+    link: ""
   },
 {
     id: 3,

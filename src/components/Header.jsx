@@ -76,7 +76,7 @@ function Header() {
           <div className="hero-content">
             <p className="hero-eyebrow">UX Designer & Frontend Developer</p>
 
-            <h1 className="hero-title">Tashif Khan</h1>
+            <h1 className="hero-title" style = {{marginBottom: "0px"}}>Tashif Khan</h1>
 
             <div className="terminal-switcher">
               <div className="terminal-topbar">
