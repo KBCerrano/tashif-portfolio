@@ -124,7 +124,7 @@ function Navbar() {
                     : "secondary"
                 }
               >
-                Programming Languages
+                Skills
               </Button>
             </div>
 

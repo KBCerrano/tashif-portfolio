@@ -16,7 +16,7 @@ function SkillsSection() {
       <div className="container">
 
         <div className="section-heading">
-          <h2>Programming Languages</h2>
+          <h2>Skills</h2>
           <p>Technologies and tools I use across development and design.</p>
         </div>
 

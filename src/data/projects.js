@@ -2,7 +2,7 @@ export const projects = [
   {
     id: 1,
     title: "Lumenta Digital Website Project",
-    image: "public/images/lumenta_digital_project.png",
+    image: "/images/lumenta_digital_project.png",
     role: "Project Manager",
     company: "Lumenta Digital",
     date: "January, 2026",
@@ -13,7 +13,7 @@ export const projects = [
   {
     id: 2,
     title: "Belsize Consulting Group Website Project",
-    image: "public/images/belsize_project.png",
+    image: "/images/belsize_project.png",
     role: "Client Success Manager",
     company: "TGT Solutions",
     date: "August, 2025",
@@ -24,7 +24,7 @@ export const projects = [
 {
     id: 3,
     title: "'Space Asylum' Comic Book Website Project",
-    image: "public/images/Space_Asylum_project.png",
+    image: "/images/Space_Asylum_project.png",
     role: "UX Designer & Frontend Developer",
     company: "Freelance",
     date: "March, 2026",
@@ -36,7 +36,7 @@ export const projects = [
   {
     id: 4,
     title: "SpaceX Launch Success Analysis",
-    image: "public/images/SpaceX_Project.png",
+    image: "/images/SpaceX_Project.png",
     role: "Data Science (Student)",
     company: "IBM Skills Network",
     date: "August, 2022",
