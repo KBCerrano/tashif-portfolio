@@ -12,7 +12,7 @@ function SkillCard({ name, icon }) {
 
 function SkillsSection() {
   return (
-    <section className="skills-section" id="skills">
+    <section className="skills-section" id="programming-languages">
       <div className="container">
 
         <div className="section-heading">
@@ -37,7 +37,6 @@ function SkillsSection() {
             <SkillCard name="SQL" icon="/icons/sql.svg" />
 
             <SkillCard name="LaTeX" icon="/icons/latex.svg" />
-
           </div>
         </div>
 

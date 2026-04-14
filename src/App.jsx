@@ -17,14 +17,15 @@ function App() {
       <Header />
 
       <main>
-        <ContactSection />
         <ProjectsSection
           title="Projects"
           subtitle="A selection of successful projects I have worked on."
           projects={projects}
         />
-        <EducationSection />
         <SkillsSection />
+        <EducationSection />
+        <ContactSection />
+
       </main>
       
       <Footer />

@@ -52,7 +52,7 @@ function ProjectCard({
 
         <div className="project-button-wrap">
           <Button to={link} variant = "primary">
-            View Project
+            View Project →
           </Button >
         </div>
       </div>

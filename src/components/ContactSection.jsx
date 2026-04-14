@@ -14,7 +14,7 @@ function ContactSection() {
 
         <div className="contact-header">
           <h2>Contact</h2>
-          <p>Feel free to reach out or connect</p>
+          <p>Feel free to reach out or connect!</p>
         </div>
 
         <div className="contact-strip">
@@ -56,7 +56,7 @@ function ContactSection() {
           >
             <FaLinkedin />
             <span>LinkedIn</span>
-            <p>tashif-khan</p>
+            <p>Tashif-Khan</p>
           </a>
 
           <div className="contact-item contact-static">

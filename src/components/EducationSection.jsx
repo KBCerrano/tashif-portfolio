@@ -3,7 +3,7 @@ import EducationCard from "./EducationCard.jsx";
 
 function EducationSection() {
   return (
-    <section className="education-section">
+    <section id="education" className="education-section">
       <div className="container">
         <div className="section-heading">
           <h2>Education & Certifications</h2>

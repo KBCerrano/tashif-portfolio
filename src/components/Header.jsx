@@ -33,7 +33,7 @@ function Header() {
         concepts into clean, maintainable code with a focus on performance and
         usability. Strong background in UX principles, allowing effective
         collaboration between design and engineering. Passionate about building
-        scalable, modern web interfaces with responsive, component based design.
+        scalable, modern web interfaces with responsive, <span className="highlight">component based design.</span>
       </>
     ),
   };
@@ -55,8 +55,11 @@ function Header() {
   }
 
   return (
-    <header className="hero" id="home">
-      <div className="container">
+    <header
+      className="hero"
+      id="home"
+      style={{ borderBottom: "none" }}
+    >      <div className="container">
         <div className="hero-layout">
           <div className="hero-image-column">
             <div className="hero-image-frame">
