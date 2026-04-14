@@ -1,5 +1,32 @@
 .hero {
+  position: relative;
   padding: 60px 0 40px;
+  overflow: hidden;
+  background-color: #f6faff;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background-image: url("/background-1.png");
+  background-size: 100% auto;   /* 👈 FULL WIDTH */
+  background-position: center top;
+  background-repeat: no-repeat;
+
+
+  z-index: 0;
+}
+
+.hero > .container {
+  position: relative;
+  z-index: 1;
+}
+
+.hero > .container {
+  position: relative;
+  z-index: 1;
 }
 
 .hero-layout {

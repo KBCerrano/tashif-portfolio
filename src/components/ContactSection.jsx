@@ -9,7 +9,7 @@ import "../styles/contactSection.css";
 
 function ContactSection() {
   return (
-    <section className="contact-section" id="contact">
+    <section className="contact-section fade-section" id="contact">
       <div className="container">
 
         <div className="contact-header">

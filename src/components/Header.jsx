@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import Button from "./Button.jsx";
+
 import "../styles/herosection.css";
 
 function Header() {
@@ -55,6 +56,7 @@ function Header() {
   }
 
   return (
+    <>
     <header
       className="hero"
       id="home"
@@ -64,7 +66,7 @@ function Header() {
           <div className="hero-image-column">
             <div className="hero-image-frame">
               <img
-                src="public\images\hero-1.jpg"
+                src="/images/hero-1.jpg"
                 alt="Tashif Khan"
                 className="hero-image"
               />
@@ -126,6 +128,7 @@ function Header() {
         </div>
       </div>
     </header>
+    </>
   );
 }
 

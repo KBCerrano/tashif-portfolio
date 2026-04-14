@@ -2,7 +2,7 @@ import { useEffect } from "react";
 
 function useFadeIn() {
   useEffect(() => {
-    const elements = document.querySelectorAll("h1, h2, h3, p, .project-card");
+    const elements = document.querySelectorAll(".fade-section");
 
     elements.forEach((el, index) => {
       el.classList.add("fade-up");
@@ -18,16 +18,14 @@ function useFadeIn() {
           }
         });
       },
-      { threshold: 0.1 }
+      { threshold: 0.12 }
     );
 
     elements.forEach((el) => {
       const rect = el.getBoundingClientRect();
 
       if (rect.top < window.innerHeight && rect.bottom > 0) {
-        setTimeout(() => {
-          el.classList.add("show");
-        }, 100);
+        el.classList.add("show");
       } else {
         observer.observe(el);
       }
