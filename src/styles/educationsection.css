@@ -1,123 +1,74 @@
-/* ================= SECTION ================= */
-
-.education-section {
-  padding: 70px 0;
-}
-
-/* ================= GROUP ================= */
-
-.education-group {
-  margin-top: 40px;
-}
-
-.education-group-title {
-  font-size: 1.3rem;
-  font-weight: 700;
-  margin-bottom: 18px;
-  color: var(--color-text);
-}
-
-/* ================= CARD ================= */
-
+/* Card layout */
 .education-card {
   display: flex;
-  align-items: flex-start;
+  align-items: center; /* 🔥 vertical centering */
+  justify-content: space-between;
   gap: 16px;
+
   background: var(--color-surface);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-lg);
-  padding: 18px;
-  margin-bottom: 16px;
+  padding: 18px 20px;
   box-shadow: var(--shadow-card);
 }
 
-.education-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 14px 35px rgba(16, 35, 60, 0.12);
-}
-
-/* ================= LOGO ================= */
-
+/* Logo */
 .education-logo {
-  width: 44px;
-  height: 44px;
-  min-width: 44px;
+  width: 56px;  /* 🔥 slightly bigger */
+  height: 56px;
+  min-width: 56px;
+
   border-radius: 50%;
   background: #f1f5f9;
+
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  background-color: white;
 }
 
-/* Logo image inside circle */
 .education-logo img {
-  width: 85%;        /* increased from 70% */
-  height: 85%;       /* increased from 70% */
+  width: 75%;
+  height: 75%;
   object-fit: contain;
 }
 
-
-
-/* ================= CONTENT ================= */
-
+/* Content block */
 .education-content {
-  flex: 1;
-}
-
-/* Row for title + date */
-.education-row {
+  flex: 1; /* 🔥 takes middle space */
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 10px;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2px;
 }
 
 /* Title */
-.education-row h4 {
+.education-title {
   margin: 0;
   font-size: 1rem;
   font-weight: 700;
   color: var(--color-text);
 }
 
-/* Date */
-.education-row span {
-  font-size: 0.85rem;
-  color: var(--color-text-soft);
-  white-space: nowrap;
-}
-
-/* Sub text (institution/provider) */
-.education-sub {
-  margin-top: 6px;
-  font-size: 0.9rem;
-  color: var(--color-text-soft);
-}
-
-/* ================= RESPONSIVE ================= */
-
-@media (max-width: 600px) {
-
-  .education-card {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .education-row {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .education-row span {
-    margin-top: 4px;
-  }
-}
-
+/* Experience */
 .education-experience {
-  margin: 4px 0 0;
-  font-size: 0.9rem;
-  color: var(--color-primary);
+  margin: 0;
+  font-size: 16px;
   font-weight: 600;
+  color: var(--color-primary);
+}
+
+/* Location */
+.education-sub {
+  margin: 0;
+  font-size: 16px;
+  color: var(--color-text-soft);
+}
+
+/* Date (right aligned, paragraph style + italic) */
+.education-date {
+  font-size: 16px;
+  color: var(--color-text-soft);
+  font-style: italic; /* 🔥 as requested */
+  white-space: nowrap;
 }

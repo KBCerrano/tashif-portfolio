@@ -1,13 +1,10 @@
 import Button from "./Button.jsx";
+import "../styles/ProjectCard.css";
 
 /**
  * ProjectCard Component
  *
  * Displays a single project in card format.
- * Now includes:
- * - Company
- * - Role
- * - Date
  */
 function ProjectCard({
   title,
@@ -20,8 +17,6 @@ function ProjectCard({
 }) {
   return (
     <article className="project-card">
-
-      {/* Image */}
       <div className="project-image-wrapper">
         <img
           src={image}
@@ -31,34 +26,35 @@ function ProjectCard({
       </div>
 
       <div className="project-content">
+        <div className="project-header">
+          <div className="project-header-main">
+            <h2 className="project-title">{title}</h2>
 
-        {/* Top row: company + role */}
-        <div className="project-meta-top">
-          <span className="project-company">{company}</span>
-          <span className="project-role">{role}</span>
+            {(role || company) && (
+              <p className="project-role">
+                {role}
+                {role && company ? " | " : ""}
+                {company}
+              </p>
+            )}
+          </div>
+
+          {date && (
+            <p className="project-date">
+              {date}
+            </p>
+          )}
         </div>
 
-        {/* Date (separate for better hierarchy) */}
-        {date && (
-          <div className="project-date">
-            {date}
-          </div>
-        )}
-
-        {/* Title */}
-        <h3 className="project-title">{title}</h3>
-
-        {/* Description */}
         <p className="project-description">
           {description}
         </p>
 
-
-        {/* Optional link */}
-        <Button to="https://github.com">
-          View Project
-        </Button>
-
+        <div className="project-button-wrap">
+          <Button to={link} variant = "primary">
+            View Project
+          </Button >
+        </div>
       </div>
     </article>
   );

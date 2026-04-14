@@ -1,22 +1,32 @@
 function EducationCard({ image, imageAlt, title, experience, location, date }) {
   return (
     <div className="education-card">
+
+      {/* Left: Logo */}
       <div className="education-logo">
         {image && <img src={image} alt={imageAlt || title} />}
       </div>
 
+      {/* Middle: Text */}
       <div className="education-content">
-        <div className="education-row">
-          <div>
-            <h4>{title}</h4>
-            {experience && <p className="education-experience">{experience}</p>}
-          </div>
+        <h4 className="education-title">{title}</h4>
 
-          <span>{date}</span>
-        </div>
+        {experience && (
+          <p className="education-experience">{experience}</p>
+        )}
 
-        {location && <p className="education-sub">{location}</p>}
+        {location && (
+          <p className="education-sub">{location}</p>
+        )}
       </div>
+
+      {/* Right: Date */}
+      {date && (
+        <div className="education-date">
+          {date}
+        </div>
+      )}
+
     </div>
   );
 }
