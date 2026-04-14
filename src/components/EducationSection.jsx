@@ -14,7 +14,7 @@ function EducationSection() {
           <h3 className="education-group-title">Academic</h3>
 
           <EducationCard
-            image="public\icons\ottawa.svg"
+            image="/icons/ottawa.svg"
             imageAlt="University of Ottawa"
             title="Honors BSc in Statistics & Minor in Philosophy"
             location="University of Ottawa"
@@ -22,7 +22,7 @@ function EducationSection() {
           />
 
           <EducationCard
-            image="public\icons\SSC.svg"
+            image="/icons/SSC.svg"
             title="Statistical Society of Canada (SSC) Member"
             experience=""
             location=""
@@ -34,7 +34,7 @@ function EducationSection() {
           <h3 className="education-group-title">Certifications</h3>
 
           <EducationCard
-            image="public\icons\google.svg"
+            image="/icons/google.svg"
             imageAlt="Google"
             title="Agile Essentials Specialization"
             experience=""
@@ -43,7 +43,7 @@ function EducationSection() {
           />
 
           <EducationCard
-            image="public\icons\udemy.svg"
+            image="/icons/udemy.svg"
             imageAlt="Udemy"
             title="Mastering Data Modelling Fundamentals"
             experience=""
@@ -52,7 +52,7 @@ function EducationSection() {
           />
 
           <EducationCard
-            image="public\icons\deeplearning.svg"
+            image="/icons/deeplearning.svg"
             imageAlt="Stanford"
             title="Machine Learning Specialization"
             experience=""
@@ -61,7 +61,7 @@ function EducationSection() {
           />
 
           <EducationCard
-            image="public\icons\ibmskills.svg"
+            image="/icons/ibmskills.svg"
             imageAlt="IBM"
             title="Data Science Specialization"
             experience=""

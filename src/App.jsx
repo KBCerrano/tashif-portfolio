@@ -6,6 +6,7 @@ import Footer from "./components/Footer.jsx";
 import EducationSection from "./components/EducationSection.jsx";
 import NavBar from "./components/NavBar.jsx";
 import ContactSection from "./components/ContactSection.jsx";
+import SkillsSection from "./components/SkillsSection.jsx";
 
 function App() {
   useFadeIn();
@@ -23,6 +24,7 @@ function App() {
           projects={projects}
         />
         <EducationSection />
+        <SkillsSection />
       </main>
       
       <Footer />
