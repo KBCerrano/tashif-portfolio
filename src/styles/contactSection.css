@@ -1,0 +1,73 @@
+.contact-section {
+  padding: 40px 0; /* compact but not cramped */
+  text-align: center;
+}
+
+/* Header */
+.contact-header h2 {
+  margin-bottom: 6px;
+  font-size: 41px;
+}
+
+.contact-header p {
+  margin: 0 0 20px;
+  color: var(--color-text-soft);
+  font-size: 16px; /* 🔥 fixed minimum */
+}
+
+
+/* Horizontal strip */
+.contact-strip {
+  display: flex;
+  justify-content: center;
+  gap: 24px; /* slightly tighter but still breathable */
+  flex-wrap: wrap;
+}
+
+/* Each item */
+.contact-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+
+  min-width: 130px; /*  slightly bigger */
+  padding: 10px 8px; /* compact but not tiny */
+
+  border-radius: 12px;
+  transition: all 0.2s ease;
+
+  color: var(--color-text);
+}
+
+/* Icons */
+.contact-item svg {
+  font-size: 1.3rem; /*  bigger again */
+  color: var(--color-primary);
+}
+
+/* Labels */
+.contact-item span {
+  font-size: 16px; /*  was small → now readable */
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-weight: 700;
+  color: var(--color-text-soft);
+}
+
+/* Value text */
+.contact-item p {
+  margin: 0;
+  font-size: 16px; /* enforce minimum */
+  font-weight: 500;
+}
+
+/* Hover */
+a.contact-item:hover {
+  background: rgba(29, 78, 216, 0.06);
+  transform: translateY(-2px);
+}
+
+.contact-static {
+  cursor: default;
+}

@@ -12,8 +12,7 @@ import ProjectCard from "./ProjectCard";
  */
 function ProjectsSection({ title, subtitle, projects }) {
   return (
-    <section className="projects-section">
-
+    <section id="projects" className="projects-section">
       <div className="container">
 
         {/* Section heading (title + subtitle) */}
