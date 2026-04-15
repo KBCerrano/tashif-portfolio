@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { FiDownload } from "react-icons/fi";
 import Button from "./Button.jsx";
 
 import "../styles/herosection.css";
@@ -17,9 +18,10 @@ function Header() {
         <span className="highlight">wireframing</span>,{" "}
         <span className="highlight">prototyping</span>, and responsive interface
         design, with a strong focus on usability and clean visual hierarchy.
-        Experienced in <span className="highlight">client-facing meetings </span> and collaborative design discussions
-        with stakeholders and overseas developers to gather requirements and adapt
-        solutions as project needs evolve.
+        Experienced in <span className="highlight">client-facing meetings </span>
+        and collaborative design discussions with stakeholders and overseas
+        developers to gather requirements and adapt solutions as project needs
+        evolve.
       </>
     ),
 
@@ -34,9 +36,23 @@ function Header() {
         concepts into clean, maintainable code with a focus on performance and
         usability. Strong background in UX principles, allowing effective
         collaboration between design and engineering. Passionate about building
-        scalable, modern web interfaces with responsive, <span className="highlight">component based design.</span>
+        scalable, modern web interfaces with responsive,{" "}
+        <span className="highlight">component based design.</span>
       </>
     ),
+  };
+
+  const resumeInfo = {
+    ux: {
+      label: "UI/UX Designer Resume",
+      file: "/resumes/Tashif-Khan-UI-UX-Resume.pdf",
+      downloadName: "Tashif-Khan-UI-UX-Resume.pdf",
+    },
+    frontend: {
+      label: "Frontend Developer Resume",
+      file: "/resumes/Tashif-Khan-Frontend-Resume.pdf",
+      downloadName: "Tashif-Khan-Frontend-Resume.pdf",
+    },
   };
 
   useEffect(() => {
@@ -55,13 +71,11 @@ function Header() {
     }, 180);
   }
 
+  const currentResume = resumeInfo[role];
+
   return (
-    <>
-    <header
-      className="hero"
-      id="home"
-      style={{ borderBottom: "none" }}
-    >      <div className="container">
+    <header className="hero" id="home" style={{ borderBottom: "none" }}>
+      <div className="container">
         <div className="hero-layout">
           <div className="hero-image-column">
             <div className="hero-image-frame">
@@ -76,7 +90,9 @@ function Header() {
           <div className="hero-content">
             <p className="hero-eyebrow">UX Designer & Frontend Developer</p>
 
-            <h1 className="hero-title" style = {{marginBottom: "0px"}}>Tashif Khan</h1>
+            <h1 className="hero-title" style={{ }}>
+              Tashif Khan
+            </h1>
 
             <div className="terminal-switcher">
               <div className="terminal-topbar">
@@ -95,20 +111,31 @@ function Header() {
                   <span className="terminal-text"> select-role</span>
                 </p>
 
-                <div className="hero-buttons">
-                  <Button
-                    variant={role === "ux" ? "primary" : "secondary"}
-                    onClick={() => handleRoleChange("ux")}
-                  >
-                    UX Designer
-                  </Button>
+                <div className="hero-buttons-row">
+                  <div className="hero-buttons" style={{ marginBottom: "8px" }}>
+                    <Button
+                      variant={role === "ux" ? "primary" : "secondary"}
+                      onClick={() => handleRoleChange("ux")}
+                    >
+                      UI/UX Designer
+                    </Button>
 
-                  <Button
-                    variant={role === "frontend" ? "primary" : "secondary"}
-                    onClick={() => handleRoleChange("frontend")}
+                    <Button
+                      variant={role === "frontend" ? "primary" : "secondary"}
+                      onClick={() => handleRoleChange("frontend")}
+                    >
+                      Frontend Developer
+                    </Button>
+                  </div>
+
+                  <a
+                    href={currentResume.file}
+                    download={currentResume.downloadName}
+                    className="resume-download-button"
                   >
-                    Frontend Developer
-                  </Button>
+                    <FiDownload className="resume-download-icon" />
+                    Download {currentResume.label}
+                  </a>
                 </div>
 
                 <div
@@ -128,7 +155,6 @@ function Header() {
         </div>
       </div>
     </header>
-    </>
   );
 }
 
