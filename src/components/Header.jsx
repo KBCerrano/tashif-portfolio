@@ -44,12 +44,12 @@ function Header() {
 
   const resumeInfo = {
     ux: {
-      label: "UI/UX Designer Resume",
+      label: "Resume",
       file: "/resumes/Tashif-Khan-UI-UX-Resume.pdf",
       downloadName: "Tashif-Khan-UI-UX-Resume.pdf",
     },
     frontend: {
-      label: "Frontend Developer Resume",
+      label: "Resume",
       file: "/resumes/Tashif-Khan-Frontend-Resume.pdf",
       downloadName: "Tashif-Khan-Frontend-Resume.pdf",
     },
