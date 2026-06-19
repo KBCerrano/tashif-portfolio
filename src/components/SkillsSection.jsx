@@ -22,19 +22,22 @@ function SkillsSection() {
 
         {/* Programming Languages */}
         <div className="skills-group">
-          <h3 className="skills-group-title">Programming Languages</h3>
+          <h3 className="skills-group-title">Programming Languages & Technologies</h3>
 
           <div className="skills-grid">
             <SkillCard name="JavaScript" icon="/icons/javascript.svg" />
+            <SkillCard name="TypeScript" icon="/icons/typescript.svg" />
+
             <SkillCard name="React" icon="/icons/react.svg" />
             <SkillCard name="HTML" icon="/icons/html.svg" />
             <SkillCard name="CSS" icon="/icons/css.svg" />
 
-            <SkillCard name="Linux" icon="/icons/linux.svg" />
+            
 
             <SkillCard name="Python" icon="/icons/python.svg" />
             <SkillCard name="Java" icon="/icons/java.svg" />
             <SkillCard name="SQL" icon="/icons/sql.svg" />
+            <SkillCard name="Linux" icon="/icons/linux.svg" />
 
             <SkillCard name="LaTeX" icon="/icons/latex.svg" />
           </div>

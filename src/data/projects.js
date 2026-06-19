@@ -18,18 +18,18 @@ export const projects = [
     company: "TGT Solutions",
     date: "August, 2025",
     description:
-      "Managed website planning, client communication, design review, and delivery coordination for a small business web build focused on usability and lead generation.",
+      "Managed delivery of a 10-page business consulting website, including client communication, design review, and coordination with an overseas development team, with a focus on usability and lead generation, featuring custom email templates for outreach.",
     link: ""
   },
 {
     id: 3,
-    title: "'Space Asylum' Comic Book Website Project",
+    title: "Comic Book Reader & Portfolio Website",
     image: "/images/Space_Asylum_project.png",
     role: "UX Designer & Frontend Developer",
-    company: "Freelance",
+    company: "Lumenta Digital",
     date: "March, 2026",
     description:
-      "Designed and developed a 4-page React website for a comic book series, featuring a custom reading mode, responsive design, and CSS animations. Led UX, QA, and deployment, with GitHub Pages hosting and Google Analytics integration.",
+      "Designed and developed a 5-page React website for a comic book series, featuring a custom reading mode, responsive design for all devices, and CSS animations. Led UX, QA, and deployment, with GitHub Pages hosting and Google Analytics integration.",
     link: "https://www.space-asylum.com/"
   },
 
@@ -41,7 +41,7 @@ export const projects = [
     company: "IBM Skills Network",
     date: "August, 2022",
     description:
-      "Analyzed SpaceX launch data using Python, SQL, and API integration, developing geospatial insights with Folium. Built and evaluated classification models for launch success prediction, with Decision Trees achieving top performance (~76.9%).",
+      "Analyzed SpaceX launch data using Python, SQL, and API integration to identify key factors influencing successful rocket launches. Developed geospatial insights with Folium and built classification models for success prediction, with Decision Trees achieving top performance (~76.9%).",
     link: "https://github.com/TashifK/Data-Science-Capstone/blob/main/Data%20Science%20Capstone%20Presentation%20SpaceX.pdf"
   },
 

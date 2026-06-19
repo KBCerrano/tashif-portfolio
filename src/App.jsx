@@ -25,11 +25,9 @@ function App() {
         <SkillsSection />
         <EducationSection />
         <ContactSection />
-
       </main>
-      
-      <Footer />
 
+      <Footer />
     </div>
   );
 }
