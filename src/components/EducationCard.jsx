@@ -77,10 +77,13 @@ function EducationCard({
                     </span>
 
                     {/* No issuer here — every course in a specialization is
-                        from the institution already named above it. */}
-                    <span className="education-course-meta">
-                      {certificate.date}
-                    </span>
+                        from the institution already named above it. Not every
+                        course carries a date. */}
+                    {certificate.date && (
+                      <span className="education-course-meta">
+                        {certificate.date}
+                      </span>
+                    )}
                   </li>
                 ))}
               </ul>

@@ -27,6 +27,23 @@ export const educationGroups = [
     title: "Certifications",
     entries: [
       {
+        id: "claude-certificates",
+        image: "/icons/claude.svg",
+        title: "Claude Certificates",
+        location: "Anthropic",
+        certificates: [
+          { name: "Claude 101" },
+          { name: "Claude Code 101" },
+          { name: "Claude Platform 101" },
+          { name: "Introduction to Claude Cowork" },
+          { name: "Claude with the Anthropic API" },
+          { name: "Introduction to agent skills" },
+          { name: "Introduction to subagents" },
+          { name: "Introduction to Model Context Protocol" },
+          { name: "Model Context Protocol: Advanced Topics" },
+        ],
+      },
+      {
         id: "google-agile",
         image: "/icons/google.svg",
         title: "Agile Essentials Specialization",

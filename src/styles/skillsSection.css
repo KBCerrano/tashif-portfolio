@@ -5,64 +5,6 @@
   margin-top: var(--space-7);
 }
 
-/* --- Collapsible group ---------------------------------------------------
-   The heading doubles as the toggle. It inherits `.group-title` typography
-   so a group that opens looks like every other group until you reach for it.
-   The show/hide mechanics live in `.collapsible` in global.css. */
-.group-toggle {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-3);
-
-  padding: 0;
-  border: none;
-  background: none;
-  cursor: pointer;
-
-  font: inherit;
-  letter-spacing: inherit;
-  text-transform: inherit;
-  color: inherit;
-
-  transition: color var(--transition-default);
-}
-
-.group-toggle:hover {
-  color: var(--color-accent);
-}
-
-/* How many are inside, so the value of opening it is visible while closed. */
-.group-toggle-count {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 20px;
-  padding: 0 var(--space-1);
-
-  border-radius: var(--radius-pill);
-  background: var(--color-accent-wash);
-  color: var(--color-accent);
-
-  font-size: var(--text-label);
-  letter-spacing: normal;
-  line-height: 1.6;
-}
-
-.group-toggle-icon {
-  display: inline-block;
-  transition: transform var(--transition-default);
-}
-
-.group-toggle[aria-expanded="true"] .group-toggle-icon {
-  transform: rotate(180deg);
-}
-
-/* The gap below the heading belongs to the open state — collapsed, it would
-   leave a band of empty space under a closed group. */
-.skills-collapsible-inner {
-  padding-top: var(--space-1);
-}
-
 .skills-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
