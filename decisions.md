@@ -41,6 +41,24 @@ be recovered from the code later.
 
 # Log
 
+## 2026-09-22 — Deploys run from GitHub Actions, not by hand
+
+**Decision:** `.github/workflows/deploy.yml` lints, builds, and force-pushes
+`dist/` to `gh-pages` on every push to `main`. Pages keeps serving from the
+`gh-pages` branch, so no repository settings had to change.
+**Why:** `main` and the live site had drifted — `gh-pages` was still serving an
+April build months later, because publishing was a manual step nobody ran. The
+branch holds generated output only, so replacing it wholesale each deploy is
+simpler than accumulating history for build artifacts.
+**Rejected:** Switching Pages to the "GitHub Actions" source with
+`actions/deploy-pages`, which needs a settings change in the repo UI and would
+have broken deploys until someone made it. Also rejected a third-party publish
+action — plain git and the built-in `GITHUB_TOKEN` do the same job with nothing
+extra to trust.
+**Guard:** The workflow fails if `dist/CNAME` is missing, since publishing a
+build without it silently takes the custom domain down.
+**Affects:** .github/workflows/deploy.yml, README.md, TODO.md
+
 ## 2026-09-22 — Hero is centred, and the name types itself on
 
 **Decision:** The hero column is centre-aligned, and the two name lines are

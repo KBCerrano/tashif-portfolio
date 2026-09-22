@@ -19,12 +19,6 @@ skip link, keyboard-accessible nav, CSS consolidation, content moved into
       the hero's primary call to action, so it's the slowest thing a recruiter
       touches. Images were optimized in the last pass; these were not.
 
-- [ ] **Add a GitHub Actions build-and-deploy workflow.** Deploys are manual.
-      This only became safe once the stylesheet import-case bug was fixed — a
-      Linux runner would have failed to resolve two imports before that. Should
-      run `npm run lint` and `npm run build` on every push. Keep `public/CNAME`
-      in the build output or the custom domain breaks.
-
 - [ ] **Replace `public/og-image.jpg` with a branded card.** It's currently a
       1200×630 crop of the hero backdrop — abstract blue, no name or role. This
       is the image LinkedIn, Slack, and iMessage show when the site is shared.

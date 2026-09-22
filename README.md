@@ -64,8 +64,16 @@ backdrop; replace it with a branded card if you want something more deliberate.
 
 ## Deploying
 
-The build output in `dist/` is what gets served. `public/CNAME` carries the
-custom domain, so it must stay in `public/` to survive a rebuild.
+Pushing to `main` deploys. [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml)
+runs lint and build, then publishes `dist/` to the `gh-pages` branch, which is
+what GitHub Pages serves at www.tashifkhan.ca.
+
+`main` holds the source; `gh-pages` holds build output only and is replaced by
+each deploy, so never commit to it by hand.
+
+`public/CNAME` carries the custom domain and has to survive into `dist/`. The
+workflow fails the deploy if it is missing rather than publishing a build that
+would take the domain down.
 
 ## Design
 
