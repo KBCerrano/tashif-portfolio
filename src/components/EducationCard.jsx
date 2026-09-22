@@ -71,21 +71,15 @@ function EducationCard({
             >
               <ul className="education-course-list">
                 {certificates.map((certificate) => (
-                  <li key={certificate.credentialId ?? certificate.name}>
+                  <li key={certificate.name}>
                     <span className="education-course-name">
                       {certificate.name}
                     </span>
 
-                    {/* Issuer only appears where a specialization mixes
-                        them — otherwise it repeats the entry above. */}
+                    {/* No issuer here — every course in a specialization is
+                        from the institution already named above it. */}
                     <span className="education-course-meta">
-                      {[
-                        certificate.issuer,
-                        certificate.date,
-                        certificate.credentialId,
-                      ]
-                        .filter(Boolean)
-                        .join(" · ")}
+                      {certificate.date}
                     </span>
                   </li>
                 ))}
