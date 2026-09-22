@@ -35,6 +35,15 @@ skip link, keyboard-accessible nav, CSS consolidation, content moved into
       has `resume: null`, so its Download Resume button is hidden. Drop a PDF in
       `public/resumes/` and fill the field in to switch it on.
 
+- [ ] **Shrink the skill icons.** `public/icons/` is **4.6 MB** — eighteen times
+      the weight of every project screenshot combined (256 KB). `java.svg` is
+      1.1 MB, `matlab.svg` 752 KB, `canva.svg` 744 KB, `react.svg` 456 KB. They
+      are SVGs carrying embedded raster data, and every one renders at 26px.
+      Verified all serving 200 on the live site, so this is weight, not
+      breakage. `scripts/optimize-images.mjs` only walks `public/images`, so
+      these were never covered. Either re-export as true vector or convert to
+      small WebP the way `affinity.webp` (2.3 KB) already is.
+
 ## Medium
 
 - [ ] **Add `robots.txt` and `sitemap.xml`.** Neither exists. Standard for an
@@ -66,9 +75,9 @@ skip link, keyboard-accessible nav, CSS consolidation, content moved into
 
 ---
 
-**If only one thing gets done:** the resume PDFs. Biggest remaining byte cost,
-sitting behind the primary call to action.
+**If only one thing gets done:** the skill icons. At 4.6 MB they are now the
+biggest byte cost on the site, ahead of the two resume PDFs at 3.2 MB combined,
+and unlike the resumes they load on first paint rather than on a click.
 
-**Cheapest meaningful batch:** resume PDFs, `fetchpriority`, `.hero-prompt`,
-`icons.svg`, and the `experience` prop — roughly one pass, no visual change, no
-decisions needed.
+**Cheapest meaningful batch:** the skill icons, the resume PDFs, and deleting
+`public/icons.svg` — all byte-shaving, no visual change, no decisions needed.
