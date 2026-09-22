@@ -1,148 +1,191 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Button from "./Button.jsx";
 import "../styles/navbar.css";
 
+const NAV_ITEMS = [
+  { id: "home", label: "Home" },
+  { id: "projects", label: "Projects" },
+  { id: "about", label: "About" },
+  { id: "skills", label: "Skills" },
+  { id: "education", label: "Education" },
+  { id: "contact", label: "Contact" },
+];
+
+// Must match the breakpoint the menu collapses at in navbar.css.
+const MOBILE_BREAKPOINT = 860;
+const ACTIVE_SECTION_OFFSET = 140;
+
+// Scrolls a section into view, honouring the OS reduced-motion setting.
+// The landing offset comes from `scroll-margin-top` in global.css.
+function scrollToSection(sectionId) {
+  const section = document.getElementById(sectionId);
+  if (!section) return;
+
+  const prefersReducedMotion = window.matchMedia(
+    "(prefers-reduced-motion: reduce)",
+  ).matches;
+
+  section.scrollIntoView({
+    behavior: prefersReducedMotion ? "auto" : "smooth",
+    block: "start",
+  });
+}
+
+/**
+ * Fixed navigation bar with a scroll progress indicator, an active-section
+ * highlight, and a collapsible menu on small screens.
+ */
 function Navbar() {
   const [scrollProgress, setScrollProgress] = useState(0);
   const [activeSection, setActiveSection] = useState("home");
   const [menuOpen, setMenuOpen] = useState(false);
+  const navbarRef = useRef(null);
+  const toggleButtonRef = useRef(null);
 
+  // Scroll progress + active section, batched into one read per frame so the
+  // handler doesn't force a layout recalculation on every scroll event.
   useEffect(() => {
-    function handleScroll() {
+    let pendingFrame = null;
+
+    function readScrollPosition() {
+      pendingFrame = null;
+
       const scrollTop = window.scrollY;
-      const docHeight =
+      const scrollableHeight =
         document.documentElement.scrollHeight - window.innerHeight;
 
-      if (docHeight <= 0) {
-        setScrollProgress(0);
-      } else {
-        const progress = (scrollTop / docHeight) * 100;
-        setScrollProgress(progress);
-      }
+      setScrollProgress(
+        scrollableHeight <= 0 ? 0 : (scrollTop / scrollableHeight) * 100,
+      );
 
-      const sections = document.querySelectorAll("section[id]");
+      const sections = document.querySelectorAll("header[id], section[id]");
       let currentSection = "home";
 
       sections.forEach((section) => {
-        const top = section.offsetTop - 140;
-        const height = section.offsetHeight;
+        const sectionTop = section.offsetTop - ACTIVE_SECTION_OFFSET;
 
-        if (scrollTop >= top && scrollTop < top + height) {
+        if (
+          scrollTop >= sectionTop &&
+          scrollTop < sectionTop + section.offsetHeight
+        ) {
           currentSection = section.getAttribute("id");
         }
       });
 
-      // Fix for last section near bottom of page
-      if (window.innerHeight + scrollTop >= document.documentElement.scrollHeight - 10) {
-        const lastSection = sections[sections.length - 1];
-        if (lastSection) {
-          currentSection = lastSection.getAttribute("id");
-        }
+      // Near the bottom of the page the last section may never reach the
+      // offset above, so highlight it explicitly.
+      const reachedBottom =
+        window.innerHeight + scrollTop >=
+        document.documentElement.scrollHeight - 10;
+
+      if (reachedBottom && sections.length > 0) {
+        currentSection = sections[sections.length - 1].getAttribute("id");
       }
 
       setActiveSection(currentSection);
     }
 
+    function requestScrollRead() {
+      if (pendingFrame === null) {
+        pendingFrame = requestAnimationFrame(readScrollPosition);
+      }
+    }
+
     function handleResize() {
-      if (window.innerWidth > 700) {
+      if (window.innerWidth > MOBILE_BREAKPOINT) {
+        setMenuOpen(false);
+      }
+      requestScrollRead();
+    }
+
+    window.addEventListener("scroll", requestScrollRead, { passive: true });
+    window.addEventListener("resize", handleResize);
+    readScrollPosition();
+
+    return () => {
+      window.removeEventListener("scroll", requestScrollRead);
+      window.removeEventListener("resize", handleResize);
+      if (pendingFrame !== null) cancelAnimationFrame(pendingFrame);
+    };
+  }, []);
+
+  // While the mobile menu is open, Escape and an outside click both close it.
+  useEffect(() => {
+    if (!menuOpen) return undefined;
+
+    function handleKeyDown(event) {
+      if (event.key === "Escape") {
+        setMenuOpen(false);
+        toggleButtonRef.current?.focus();
+      }
+    }
+
+    function handlePointerDown(event) {
+      if (!navbarRef.current?.contains(event.target)) {
         setMenuOpen(false);
       }
     }
 
-    window.addEventListener("scroll", handleScroll);
-    window.addEventListener("resize", handleResize);
-    handleScroll();
+    document.addEventListener("keydown", handleKeyDown);
+    document.addEventListener("pointerdown", handlePointerDown);
 
     return () => {
-      window.removeEventListener("scroll", handleScroll);
-      window.removeEventListener("resize", handleResize);
+      document.removeEventListener("keydown", handleKeyDown);
+      document.removeEventListener("pointerdown", handlePointerDown);
     };
-  }, []);
+  }, [menuOpen]);
 
-  function scrollToSection(id) {
-    const el = document.getElementById(id);
-    const offset = 40;
-
-    if (el) {
-      const y = el.getBoundingClientRect().top + window.scrollY - offset;
-
-      window.scrollTo({
-        top: y,
-        behavior: "smooth",
-      });
-    }
-  }
-
-  function handleNavClick(id) {
+  // Closes the menu and scrolls to the chosen section.
+  function handleNavClick(sectionId) {
     setMenuOpen(false);
-    setActiveSection(id);
-    scrollToSection(id);
+    setActiveSection(sectionId);
+    scrollToSection(sectionId);
   }
 
   return (
-    <div className="navbar-wrapper">
+    <div className="navbar-wrapper" ref={navbarRef}>
       <div className="navbar-shell">
-        <nav className="navbar">
+        <nav className="navbar" aria-label="Main">
           <div className="navbar-name">
-            <a href="#home">Tashif Khan</a>
+            <a
+              href="#home"
+              onClick={(event) => {
+                event.preventDefault();
+                handleNavClick("home");
+              }}
+            >
+              Tashif Khan
+            </a>
           </div>
 
           <button
             type="button"
+            ref={toggleButtonRef}
             className={`navbar-toggle ${menuOpen ? "open" : ""}`}
             aria-label="Toggle navigation menu"
             aria-expanded={menuOpen}
-            onClick={() => setMenuOpen((prev) => !prev)}
+            aria-controls="navbar-links"
+            onClick={() => setMenuOpen((isOpen) => !isOpen)}
           >
             <span></span>
             <span></span>
             <span></span>
           </button>
 
-          <div className={`navbar-links ${menuOpen ? "show" : ""}`}>
-            <div onClick={() => handleNavClick("home")}>
+          <div
+            id="navbar-links"
+            className={`navbar-links ${menuOpen ? "show" : ""}`}
+          >
+            {NAV_ITEMS.map((item) => (
               <Button
-                variant={activeSection === "home" ? "primary" : "secondary"}
+                key={item.id}
+                variant={activeSection === item.id ? "primary" : "secondary"}
+                onClick={() => handleNavClick(item.id)}
+                aria-current={activeSection === item.id ? "true" : undefined}
               >
-                Home
+                {item.label}
               </Button>
-            </div>
-
-            <div onClick={() => handleNavClick("projects")}>
-              <Button
-                variant={activeSection === "projects" ? "primary" : "secondary"}
-              >
-                Projects
-              </Button>
-            </div>
-
-            <div onClick={() => handleNavClick("programming-languages")}>
-              <Button
-                variant={
-                  activeSection === "programming-languages"
-                    ? "primary"
-                    : "secondary"
-                }
-              >
-                Skills
-              </Button>
-            </div>
-
-            <div onClick={() => handleNavClick("education")}>
-              <Button
-                variant={activeSection === "education" ? "primary" : "secondary"}
-              >
-                Education
-              </Button>
-            </div>
-
-            <div onClick={() => handleNavClick("contact")}>
-              <Button
-                variant={activeSection === "contact" ? "primary" : "secondary"}
-              >
-                Contact
-              </Button>
-            </div>
+            ))}
           </div>
         </nav>
 

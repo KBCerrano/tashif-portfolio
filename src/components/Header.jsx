@@ -1,158 +1,90 @@
-import { useEffect, useState } from "react";
-import { FiDownload } from "react-icons/fi";
+import { FiArrowDown, FiDownload } from "react-icons/fi";
+import { positioning, roleOrder, roles } from "../data/profile.jsx";
+import useTypewriter from "../hooks/useTypewriter.js";
 import Button from "./Button.jsx";
 
-import "../styles/herosection.css";
+import "../styles/heroSection.css";
 
-function Header() {
-  const [role, setRole] = useState("frontend");
-  const [displayedSummary, setDisplayedSummary] = useState(null);
-  const [isVisible, setIsVisible] = useState(true);
+// Split across two lines so the surname can take the accent and the name
+// reads as a wordmark rather than a sentence.
+const NAME_LINES = ["Tashif", "Khan"];
 
-  const summaries = {
-    ux: (
-      <>
-        <span className="highlight">UX/UI Designer</span> with experience designing
-        websites and digital products in <span className="highlight">Figma</span>{" "}
-        with strong programming background. Skilled in{" "}
-        <span className="highlight">wireframing</span>,{" "}
-        <span className="highlight">prototyping</span>, and responsive interface
-        design, with a strong focus on usability and clean visual hierarchy.
-        Experienced in <span className="highlight">client-facing meetings </span>
-        and collaborative design discussions with stakeholders and overseas
-        developers to gather requirements and adapt solutions as project needs
-        evolve.
-      </>
-    ),
-
-    frontend: (
-      <>
-        <span className="highlight">Frontend Developer</span> with strong experience
-        building responsive web applications using{" "}
-        <span className="highlight">React</span>,{" "}
-        <span className="highlight">JavaScript</span>,{" "}
-        <span className="highlight">HTML</span>, and{" "}
-        <span className="highlight">CSS</span>. Experienced in translating design
-        concepts into clean, maintainable code with a focus on performance and
-        usability. Strong background in UX principles, allowing effective
-        collaboration between design and engineering. Passionate about building
-        scalable, modern web interfaces with responsive,{" "}
-        <span className="highlight">component based design.</span>
-      </>
-    ),
-  };
-
-  const resumeInfo = {
-    ux: {
-      label: "Resume",
-      file: "/resumes/Tashif-Khan-UI-UX-Resume.pdf",
-      downloadName: "Tashif-Khan-UI-UX-Resume.pdf",
-    },
-    frontend: {
-      label: "Resume",
-      file: "/resumes/Tashif-Khan-Frontend-Resume.pdf",
-      downloadName: "Tashif-Khan-Frontend-Resume.pdf",
-    },
-  };
-
-  useEffect(() => {
-    setDisplayedSummary(summaries[role]);
-  }, []);
-
-  function handleRoleChange(nextRole) {
-    if (nextRole === role) return;
-
-    setIsVisible(false);
-
-    setTimeout(() => {
-      setRole(nextRole);
-      setDisplayedSummary(summaries[nextRole]);
-      setIsVisible(true);
-    }, 180);
-  }
-
-  const currentResume = resumeInfo[role];
+/**
+ * Hero: the name at display size, one line of positioning, and the two
+ * controls that matter — the role switcher and the resume download.
+ *
+ * The role lives in App so this switcher also drives the About section; the
+ * long-form summary was moved out of the hero so the first screen stays a
+ * statement rather than a paragraph.
+ */
+function Header({ selectedRole, onRoleChange }) {
+  const currentRole = roles[selectedRole];
+  const { typedLines, activeLine, isDone } = useTypewriter(NAME_LINES);
 
   return (
-    <header className="hero" id="home" style={{ borderBottom: "none" }}>
+    <header className="hero" id="home">
       <div className="container">
-        <div className="hero-layout">
-          <div className="hero-image-column">
-            <div className="hero-image-frame">
-              <img
-                src="/images/hero-1.jpg"
-                alt="Tashif Khan"
-                className="hero-image"
-              />
-            </div>
+        <p className="hero-eyebrow">{positioning}</p>
+
+        {/* The name is announced in full from the first render — the typing is
+            decoration, so the partial text is hidden from assistive tech and
+            the whole name is read from the label instead. */}
+        <h1 className="hero-title" aria-label={NAME_LINES.join(" ")}>
+          {typedLines.map((typed, index) => (
+            <span
+              key={NAME_LINES[index]}
+              aria-hidden="true"
+              className={`hero-title-line ${
+                index === 1 ? "hero-title-accent" : ""
+              }`}
+            >
+              {typed}
+              {index === activeLine && (
+                <span
+                  className={`hero-caret ${isDone ? "is-blinking" : ""}`}
+                ></span>
+              )}
+            </span>
+          ))}
+        </h1>
+
+        <p className="hero-claim" aria-live="polite">
+          {currentRole.claim}
+        </p>
+
+        <div className="hero-controls">
+          <div className="role-switch" role="group" aria-label="Select a role">
+            {roleOrder.map((roleId) => (
+              <Button
+                key={roleId}
+                variant={selectedRole === roleId ? "primary" : "secondary"}
+                onClick={() => onRoleChange(roleId)}
+                aria-pressed={selectedRole === roleId}
+              >
+                {roles[roleId].label}
+              </Button>
+            ))}
           </div>
 
-          <div className="hero-content">
-            <p className="hero-eyebrow">UX Designer & Frontend Developer</p>
-
-            <h1 className="hero-title" style={{ }}>
-              Tashif Khan
-            </h1>
-
-            <div className="terminal-switcher">
-              <div className="terminal-topbar">
-                <span className="terminal-dot terminal-dot-red"></span>
-                <span className="terminal-dot terminal-dot-yellow"></span>
-                <span className="terminal-dot terminal-dot-green"></span>
-                <span className="terminal-label">role-switcher.sh</span>
-              </div>
-
-              <div className="terminal-body">
-                <p className="terminal-command">
-                  <span className="terminal-path">tashif@portfolio</span>
-                  <span className="terminal-separator">:</span>
-                  <span className="terminal-directory">~</span>
-                  <span className="terminal-symbol">$</span>
-                  <span className="terminal-text"> select-role</span>
-                </p>
-
-                <div className="hero-buttons-row">
-                  <div className="hero-buttons" style={{ marginBottom: "8px" }}>
-                    <Button
-                      variant={role === "ux" ? "primary" : "secondary"}
-                      onClick={() => handleRoleChange("ux")}
-                    >
-                      UI/UX Designer
-                    </Button>
-
-                    <Button
-                      variant={role === "frontend" ? "primary" : "secondary"}
-                      onClick={() => handleRoleChange("frontend")}
-                    >
-                      Frontend Developer
-                    </Button>
-                  </div>
-
-                  <a
-                    href={currentResume.file}
-                    download={currentResume.downloadName}
-                    className="resume-download-button"
-                  >
-                    <FiDownload className="resume-download-icon" />
-                    Download {currentResume.label}
-                  </a>
-                </div>
-
-                <div
-                  className={`terminal-output ${isVisible ? "terminal-output-show" : "terminal-output-hide"
-                    }`}
-                >
-                  <p className="terminal-output-label">
-                    <span>&gt;</span> professional-summary
-                  </p>
-                  <div className="hero-summary">
-                    <p>{displayedSummary}</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+          {/* Roles without a resume on file show no button at all, rather
+              than a download that hands over the wrong document. */}
+          {currentRole.resume && (
+            <a
+              href={currentRole.resume.file}
+              download={currentRole.resume.downloadName}
+              className="resume-download-button"
+            >
+              <FiDownload className="resume-download-icon" aria-hidden="true" />
+              Download {currentRole.resume.label}
+            </a>
+          )}
         </div>
+
+        {/* A quiet pointer to the work, which is the next thing on the page. */}
+        <a className="hero-scroll-cue" href="#projects">
+          <FiArrowDown aria-hidden="true" />
+          <span>See the work</span>
+        </a>
       </div>
     </header>
   );

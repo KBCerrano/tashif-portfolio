@@ -1,0 +1,272 @@
+/* Hero: type-led and left-aligned. The name is the only image on the first
+   screen, so everything else here stays quiet and the air does the work. */
+
+.hero {
+  padding-block: var(--section-y-hero) var(--section-y);
+  background: var(--color-background);
+}
+
+/* Everything in the hero is centred on the name, which is the one thing on
+   this screen that has to land. */
+.hero .container {
+  text-align: center;
+}
+
+.hero-eyebrow {
+  margin: 0 0 var(--space-5);
+  font-family: var(--font-display);
+  font-size: var(--text-label);
+  font-weight: 600;
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--color-accent);
+}
+
+/* --- The name ----------------------------------------------------------- */
+/* Set in the heavier display cut, stacked, with the lines pulled tight
+   together — at this size the default leading opens a gap you could park a
+   paragraph in. */
+.hero-title {
+  margin: 0 0 var(--space-6);
+  font-family: var(--font-wordmark);
+  font-size: var(--text-display);
+  font-weight: 700;
+  letter-spacing: var(--tracking-tight);
+  line-height: 0.88;
+  text-wrap: nowrap;
+}
+
+/* The line keeps its height before anything has been typed into it, so the
+   block below does not jump up the page while the animation runs. */
+.hero-title-line {
+  display: block;
+  min-height: 0.88em;
+}
+
+/* --- Caret ---------------------------------------------------------------
+   A bar that follows the text being typed, then blinks once the name is
+   complete. Sized in em so it tracks the display clamp. */
+.hero-caret {
+  display: inline-block;
+  width: 0.06em;
+  height: 0.78em;
+  margin-left: 0.04em;
+  vertical-align: baseline;
+  background: var(--color-accent);
+}
+
+.hero-caret.is-blinking {
+  animation: hero-caret-blink 1.1s step-end infinite;
+}
+
+@keyframes hero-caret-blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+/* The surname carries the accent. One word of color is the whole palette
+   statement on this screen. */
+.hero-title-accent {
+  color: var(--color-accent);
+}
+
+/* --- Positioning line --------------------------------------------------- */
+/* The opening sentence of the professional summary. The rest of that
+   paragraph lives in the About section. */
+.hero-claim {
+  margin: 0 auto var(--space-7);
+  max-width: 34ch;
+
+  font-size: var(--text-lead);
+  font-weight: 400;
+  line-height: 1.35;
+  letter-spacing: var(--tracking-snug);
+  color: var(--color-text-soft);
+}
+
+/* Terms lifted out of the summary — the only emphasis inside body copy. */
+.highlight {
+  color: var(--color-text);
+  font-weight: 600;
+}
+
+/* --- Controls ----------------------------------------------------------- */
+.hero-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+
+/* Segmented control: a hairline rail holding the two role buttons. */
+.role-switch {
+  display: inline-flex;
+  gap: var(--space-1);
+  padding: var(--space-1);
+  background: var(--color-surface);
+  border: var(--border-hairline);
+  border-radius: var(--radius-pill);
+}
+
+.role-switch .btn {
+  border-radius: var(--radius-pill);
+  border-color: transparent;
+  padding: 11px 22px;
+}
+
+/* The selected segment reads as ink, so the accent stays reserved for the
+   name, links, and the primary call to action. */
+.role-switch .btn-primary,
+.role-switch .btn-primary:hover {
+  background: var(--color-ink);
+  border-color: var(--color-ink);
+  color: var(--color-text-inverse);
+}
+
+.role-switch .btn-secondary {
+  background: transparent;
+  color: var(--color-text-soft);
+}
+
+.role-switch .btn-secondary:hover {
+  background: var(--color-surface-sunken);
+  border-color: transparent;
+  color: var(--color-text);
+}
+
+/* --- Resume download ---------------------------------------------------- */
+.resume-download-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+
+  padding: 14px 24px;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--color-border-strong);
+  background: transparent;
+  color: var(--color-text);
+
+  font-family: var(--font-display);
+  font-size: var(--text-small);
+  font-weight: 500;
+  letter-spacing: var(--tracking-snug);
+  line-height: 1.3;
+  white-space: nowrap;
+  cursor: pointer;
+
+  transition:
+    background-color var(--transition-default),
+    border-color var(--transition-default),
+    color var(--transition-default);
+}
+
+.resume-download-button:hover {
+  border-color: var(--color-ink);
+  background: var(--color-surface-sunken);
+  color: var(--color-text);
+}
+
+.resume-download-icon {
+  font-size: 1rem;
+  color: var(--color-accent);
+}
+
+/* --- Scroll cue --------------------------------------------------------- */
+.hero-scroll-cue {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-top: var(--space-8);
+
+  font-family: var(--font-display);
+  font-size: var(--text-label);
+  font-weight: 600;
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--color-text-faint);
+}
+
+.hero-scroll-cue:hover {
+  color: var(--color-text);
+}
+
+/* The arrow drifts down and resets — a hint, not an animation loop that
+   demands attention. Removed entirely under reduced motion. */
+.hero-scroll-cue svg {
+  animation: hero-cue-drift 2.4s ease-in-out infinite;
+}
+
+@keyframes hero-cue-drift {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(4px);
+  }
+}
+
+/* --- Responsive --------------------------------------------------------- */
+@media (max-width: 700px) {
+  .hero {
+    padding-block: var(--section-y-tight) var(--section-y-tight);
+  }
+
+  .hero-claim {
+    max-width: none;
+  }
+
+  /* Four role titles on one line need every pixel at this width, so the
+     tracking comes in a little. */
+  .hero-eyebrow {
+    letter-spacing: 0.07em;
+  }
+
+  .hero-scroll-cue {
+    margin-top: var(--space-7);
+  }
+}
+
+@media (max-width: 560px) {
+  .hero-controls {
+    align-items: stretch;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  /* Side-by-side segments overflow at this width, so the rail stacks. */
+  .role-switch {
+    flex-direction: column;
+    border-radius: var(--radius-md);
+    width: 100%;
+  }
+
+  .role-switch .btn {
+    border-radius: var(--radius-sm);
+    width: 100%;
+  }
+
+  .resume-download-button {
+    width: 100%;
+    border-radius: var(--radius-sm);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-scroll-cue svg {
+    animation: none;
+  }
+
+  /* The hook already prints the name in full here, so the caret would just be
+     a bar blinking beside a finished word. */
+  .hero-caret {
+    display: none;
+  }
+}

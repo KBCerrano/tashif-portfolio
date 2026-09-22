@@ -1,0 +1,97 @@
+/* About: portrait beside the long-form summary. The one place on the page
+   where a person appears, which is why it gets the widest column of air. */
+
+.about-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 360px) minmax(0, 1fr);
+  gap: var(--space-8);
+  align-items: center;
+}
+
+/* --- Figure --------------------------------------------------------------
+   A decorative panel, not a photograph. It sits in the same tinted mat the
+   project images use so it reads as part of the system rather than as a
+   stray graphic, and it is set landscape so it is not mistaken for a
+   headshot slot. */
+.about-figure {
+  border-radius: var(--radius-lg);
+  background: var(--color-accent-tint);
+  border: var(--border-hairline);
+  padding: var(--space-4);
+  overflow: hidden;
+}
+
+.about-figure img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  object-position: center top;
+  border-radius: var(--radius-md);
+  transition: transform var(--transition-slow);
+}
+
+.about-figure:hover img {
+  transform: scale(1.02);
+}
+
+/* --- Copy --------------------------------------------------------------- */
+.about-title {
+  margin: 0 0 var(--space-5);
+  font-size: var(--text-h2);
+  font-weight: 600;
+  letter-spacing: var(--tracking-tight);
+  line-height: 1.05;
+  max-width: 16ch;
+}
+
+.about-body {
+  margin: 0;
+  max-width: var(--measure);
+  font-size: var(--text-meta);
+  line-height: 1.65;
+  color: var(--color-text-soft);
+
+  /* Fades in when the role switches. The element is keyed on the role, so a
+     switch remounts it and replays this. */
+  animation: about-body-in var(--transition-default) ease-out;
+}
+
+@keyframes about-body-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* --- Responsive --------------------------------------------------------- */
+@media (max-width: 900px) {
+  .about-layout {
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+  }
+
+  /* The figure stops being a column and becomes a banner above the copy,
+     capped so it never takes over the screen on a tablet. */
+  .about-figure {
+    max-width: 420px;
+  }
+
+  .about-title {
+    max-width: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .about-body {
+    animation: none;
+  }
+
+  .about-figure:hover img {
+    transform: none;
+  }
+}

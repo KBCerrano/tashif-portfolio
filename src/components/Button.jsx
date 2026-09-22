@@ -1,15 +1,14 @@
-import React from "react";
-
 /**
- * Button Component
+ * Shared button. Renders an anchor when `to` is provided, otherwise a <button>.
  *
  * Props:
  * - children: button text
  * - to: optional link (renders <a>)
  * - variant: "primary" | "secondary"
- * - disabled: disables button
+ * - disabled: disables the button
  * - onClick: click handler (for non-link buttons)
- * - newTab: boolean (default = true → opens in new tab)
+ * - newTab: open links in a new tab (default true)
+ * - rest: any other props (aria-*, type, ...) are forwarded to the element
  */
 function Button({
   children,
@@ -17,11 +16,13 @@ function Button({
   variant = "primary",
   disabled = false,
   onClick,
-  newTab = true   // 👈 default is now TRUE
+  newTab = true,
+  ...rest
 }) {
-  const classes = `btn btn-${variant} ${disabled ? "btn-disabled" : ""}`;
+  const classes = ["btn", `btn-${variant}`, disabled && "btn-disabled"]
+    .filter(Boolean)
+    .join(" ");
 
-  // If link provided → render anchor
   if (to && !disabled) {
     return (
       <a
@@ -29,22 +30,22 @@ function Button({
         target={newTab ? "_blank" : "_self"}
         rel={newTab ? "noopener noreferrer" : undefined}
         className={classes}
+        {...rest}
       >
-        <span className="btn-overlay"></span>
-        <span className="btn-text">{children}</span>
+        {children}
       </a>
     );
   }
 
-  // Otherwise → regular button
   return (
     <button
+      type="button"
       className={classes}
       onClick={onClick}
       disabled={disabled}
+      {...rest}
     >
-      <span className="btn-overlay"></span>
-      <span className="btn-text">{children}</span>
+      {children}
     </button>
   );
 }

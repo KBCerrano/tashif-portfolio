@@ -1,73 +1,132 @@
-.contact-section {
-  padding: 40px 0; /* compact but not cramped */
-  text-align: center;
+/* Contact: the closing call to action. The email is the headline act; the
+   rest of the details are a quiet row of tiles beneath it. */
+
+.contact-lead {
+  max-width: 800px;
+  margin-bottom: var(--space-8);
 }
 
-/* Header */
-.contact-header h2 {
-  margin-bottom: 6px;
-  font-size: 41px;
-}
-
-.contact-header p {
-  margin: 0 0 20px;
+.contact-invite {
+  margin: var(--space-4) 0 var(--space-6);
+  font-size: var(--text-lead);
+  line-height: 1.45;
+  letter-spacing: var(--tracking-snug);
   color: var(--color-text-soft);
-  font-size: 16px; /* 🔥 fixed minimum */
+  max-width: var(--measure);
 }
 
+.contact-lead h2 {
+  margin: 0;
+  font-size: var(--text-h2);
+  font-weight: 600;
+  letter-spacing: var(--tracking-tight);
+  line-height: 1.05;
+}
 
-/* Horizontal strip */
+/* --- Email ---------------------------------------------------------------
+   Sized up to sit just under the section title, with an underline that draws
+   itself on hover rather than sitting there permanently. */
+.contact-email {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
+
+  font-size: var(--text-h3);
+  font-weight: 500;
+  letter-spacing: var(--tracking-snug);
+  color: var(--color-text);
+  overflow-wrap: anywhere;
+}
+
+.contact-email svg {
+  font-size: 0.8em;
+  color: var(--color-accent);
+  flex-shrink: 0;
+}
+
+.contact-email span {
+  background-image: linear-gradient(var(--color-accent), var(--color-accent));
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  background-size: 0% 2px;
+  transition:
+    background-size var(--transition-slow),
+    color var(--transition-default);
+}
+
+.contact-email:hover {
+  color: var(--color-accent);
+}
+
+.contact-email:hover span {
+  background-size: 100% 2px;
+}
+
+/* --- Detail tiles ------------------------------------------------------- */
 .contact-strip {
-  display: flex;
-  justify-content: center;
-  gap: 24px; /* slightly tighter but still breathable */
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--space-3);
 }
 
-/* Each item */
 .contact-item {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 6px;
+  align-items: flex-start;
+  gap: var(--space-1);
 
-  min-width: 130px; /*  slightly bigger */
-  padding: 10px 8px; /* compact but not tiny */
+  padding: var(--space-5);
+  min-width: 0;
 
-  border-radius: 12px;
-  transition: all 0.2s ease;
-
+  background: var(--color-surface);
+  border: var(--border-hairline);
+  border-radius: var(--radius-md);
   color: var(--color-text);
+
+  transition: border-color var(--transition-default);
 }
 
-/* Icons */
 .contact-item svg {
-  font-size: 1.3rem; /*  bigger again */
-  color: var(--color-primary);
+  font-size: 1.1rem;
+  color: var(--color-accent);
+  margin-bottom: var(--space-2);
 }
 
-/* Labels */
 .contact-item span {
-  font-size: 16px; /*  was small → now readable */
+  font-family: var(--font-display);
+  font-size: var(--text-label);
   text-transform: uppercase;
-  letter-spacing: 0.06em;
-  font-weight: 700;
-  color: var(--color-text-soft);
+  letter-spacing: var(--tracking-wide);
+  font-weight: 600;
+  color: var(--color-text-faint);
 }
 
-/* Value text */
 .contact-item p {
   margin: 0;
-  font-size: 16px; /* enforce minimum */
+  font-size: var(--text-small);
   font-weight: 500;
+  color: var(--color-text);
+  min-width: 0;
+  overflow-wrap: anywhere;
 }
 
-/* Hover */
 a.contact-item:hover {
-  background: rgba(29, 78, 216, 0.06);
-  transform: translateY(-2px);
+  border-color: var(--color-ink);
+  color: var(--color-text);
 }
 
 .contact-static {
   cursor: default;
+}
+
+@media (max-width: 700px) {
+  .contact-lead {
+    margin-bottom: var(--space-6);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .contact-email span {
+    background-size: 0 2px;
+  }
 }

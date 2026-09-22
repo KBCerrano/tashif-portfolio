@@ -1,0 +1,126 @@
+/* Education and certifications, drawn as a vertical timeline.
+   Rows in a bordered table read as a spreadsheet; a rail with markers reads
+   as a path through time, which is what this content actually is. */
+
+.education-group + .education-group {
+  margin-top: var(--space-8);
+}
+
+/* --- The rail ------------------------------------------------------------
+   Drawn on the list rather than on each entry, so it runs continuously
+   between the markers instead of restarting at every row. It stops short at
+   both ends so it begins and ends on a marker, not in empty space. */
+.education-timeline {
+  position: relative;
+  margin: 0;
+  padding: 0 0 0 var(--space-7);
+  list-style: none;
+}
+
+.education-timeline::before {
+  content: "";
+  position: absolute;
+  left: 6px;
+  top: 8px;
+  bottom: 8px;
+  width: 2px;
+  background: var(--color-border-strong);
+}
+
+/* --- One entry ---------------------------------------------------------- */
+.education-entry {
+  position: relative;
+}
+
+.education-entry + .education-entry {
+  margin-top: var(--space-7);
+}
+
+/* The marker. Filled ink by default — a point already passed. */
+.education-entry::before {
+  content: "";
+  position: absolute;
+  left: calc(var(--space-7) * -1);
+  top: 6px;
+  width: 14px;
+  height: 14px;
+  border-radius: var(--radius-pill);
+  border: 2px solid var(--color-ink);
+  background: var(--color-ink);
+}
+
+/* The most recent entry is an open accent ring, so the eye lands on where
+   this person is now rather than on where they started. */
+.education-entry.is-current::before {
+  border-color: var(--color-accent);
+  background: var(--color-background);
+}
+
+.education-entry-body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.education-date {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: var(--text-label);
+  font-weight: 600;
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--color-text-faint);
+  line-height: 1;
+}
+
+/* A hairline under the title separates it from the institution below,
+   echoing the rule under each label in the reference. */
+.education-title {
+  margin: 0;
+  padding-bottom: var(--space-3);
+  border-bottom: var(--border-hairline);
+
+  font-family: var(--font-display);
+  font-size: var(--text-h4);
+  font-weight: 600;
+  letter-spacing: var(--tracking-snug);
+  color: var(--color-text);
+  line-height: 1.3;
+  max-width: 44ch;
+}
+
+/* --- Institution -------------------------------------------------------- */
+.education-institution {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  min-width: 0;
+}
+
+/* The logo sits on the page rather than in a tinted chip — at this size the
+   chip was doing more visual work than the logo inside it. */
+.education-logo {
+  width: 34px;
+  height: 34px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.education-sub {
+  margin: 0;
+  font-size: var(--text-small);
+  font-weight: 500;
+  color: var(--color-text-soft);
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 560px) {
+  .education-timeline {
+    padding-left: var(--space-6);
+  }
+
+  .education-entry::before {
+    left: calc(var(--space-6) * -1);
+  }
+}

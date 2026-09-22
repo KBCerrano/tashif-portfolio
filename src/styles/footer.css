@@ -1,45 +1,85 @@
+/* Footer: a thin colophon closing the page. Three items on one line at
+   desktop, stacked and centred once that no longer fits. */
+
 .footer {
-  margin-top: 80px;
-  padding: 40px 0 30px;
-  background: #ffffff;
-  border-top: 1px solid var(--color-border);
+  padding-block: var(--space-6);
+  background: var(--color-background);
+  border-top: var(--border-hairline);
 }
 
-.footer-grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  justify-content: center;
-}
-
-/* Each item */
-.footer-item {
+.footer-row {
   display: flex;
   align-items: center;
-  gap: 10px;
-  color: var(--color-text);
-  font-size: 0.95rem;
-  padding: 10px 14px;
-  border-radius: 10px;
-  transition: all 0.25s ease;
+  justify-content: space-between;
+  gap: var(--space-4);
+  flex-wrap: wrap;
 }
 
-/* Icons */
-.footer-icon {
-  color: var(--color-primary);
-  font-size: 1rem;
+.footer-credit {
+  margin: 0;
+  font-size: var(--text-small);
+  color: var(--color-text-faint);
 }
 
-/* Hover effects */
-.footer-item:hover {
-  background: rgba(0, 102, 255, 0.08);
+/* --- Back to top -------------------------------------------------------- */
+.footer-top {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+
+  font-family: var(--font-display);
+  font-size: var(--text-label);
+  font-weight: 600;
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--color-text-soft);
+}
+
+.footer-top:hover {
+  color: var(--color-accent);
+}
+
+.footer-top svg {
+  transition: transform var(--transition-default);
+}
+
+.footer-top:hover svg {
   transform: translateY(-2px);
 }
 
-/* Bottom text */
-.footer-bottom {
-  margin-top: 25px;
-  text-align: center;
-  font-size: 0.85rem;
+/* --- Social ------------------------------------------------------------- */
+.footer-links {
+  display: flex;
+  gap: var(--space-5);
+}
+
+.footer-links a {
+  font-size: var(--text-small);
+  font-weight: 500;
   color: var(--color-text-soft);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  text-decoration-color: var(--color-border-strong);
+  transition:
+    color var(--transition-default),
+    text-decoration-color var(--transition-default);
+}
+
+.footer-links a:hover {
+  color: var(--color-accent);
+  text-decoration-color: var(--color-accent);
+}
+
+@media (max-width: 700px) {
+  .footer-row {
+    flex-direction: column;
+    justify-content: center;
+    gap: var(--space-4);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .footer-top:hover svg {
+    transform: none;
+  }
 }

@@ -1,33 +1,37 @@
-function EducationCard({ image, imageAlt, title, experience, location, date }) {
+/**
+ * One entry on the education timeline: a dot on the rail, then the date,
+ * title, and the institution's logo.
+ *
+ * `isCurrent` marks the most recent entry in its group, which draws the dot
+ * as an open accent ring instead of a filled one.
+ *
+ * The logo is decorative — the institution is named in the text beside it.
+ */
+function EducationCard({ image, title, location, date, isCurrent }) {
   return (
-    <div className="education-card">
+    <li className={`education-entry ${isCurrent ? "is-current" : ""}`}>
+      <div className="education-entry-body">
+        {date && <p className="education-date">{date}</p>}
 
-      {/* Left: Logo */}
-      <div className="education-logo">
-        {image && <img src={image} alt={imageAlt || title} />}
-      </div>
-
-      {/* Middle: Text */}
-      <div className="education-content">
         <h4 className="education-title">{title}</h4>
 
-        {experience && (
-          <p className="education-experience">{experience}</p>
-        )}
+        {(image || location) && (
+          <div className="education-institution">
+            {image && (
+              <img
+                className="education-logo"
+                src={image}
+                alt=""
+                loading="lazy"
+                decoding="async"
+              />
+            )}
 
-        {location && (
-          <p className="education-sub">{location}</p>
+            {location && <p className="education-sub">{location}</p>}
+          </div>
         )}
       </div>
-
-      {/* Right: Date */}
-      {date && (
-        <div className="education-date">
-          {date}
-        </div>
-      )}
-
-    </div>
+    </li>
   );
 }
 

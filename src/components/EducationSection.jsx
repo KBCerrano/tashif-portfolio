@@ -1,74 +1,41 @@
-import "../styles/educationSection.css";
+import { educationGroups } from "../data/education.js";
 import EducationCard from "./EducationCard.jsx";
+import "../styles/educationSection.css";
 
+// Education and certifications, rendered from src/data/education.js.
 function EducationSection() {
   return (
-    <section id="education" className="education-section">
+    <section id="education" className="education-section section fade-section">
       <div className="container">
-        <div className="section-heading">
-          <h2>Education & Certifications</h2>
-          <p>A summary of my academic background and professional training.</p>
+        <div className="section-heading fade-item">
+          <p className="eyebrow">Background</p>
+          <h2>Education &amp; Certifications</h2>
+          <p>
+            My academic background and certifications across web development,
+            UX/UI, data analysis, and AI work.
+          </p>
         </div>
 
-        <div className="education-group">
-          <h3 className="education-group-title">Academic</h3>
+        {educationGroups.map((group) => (
+          <div className="education-group fade-item" key={group.id}>
+            <h3 className="group-title">{group.title}</h3>
 
-          <EducationCard
-            image="/icons/ottawa.svg"
-            imageAlt="University of Ottawa"
-            title="Honors BSc in Statistics & Minor in Philosophy"
-            location="University of Ottawa"
-            date="June 2025"
-          />
-
-          <EducationCard
-            image="/icons/SSC.svg"
-            title="Statistical Society of Canada (SSC) Member"
-            experience=""
-            location=""
-            date="June 2025"
-          />
-        </div>
-
-        <div className="education-group">
-          <h3 className="education-group-title">Certifications</h3>
-
-          <EducationCard
-            image="/icons/google.svg"
-            imageAlt="Google"
-            title="Agile Essentials Specialization"
-            experience=""
-            location="Google"
-            date="Feb 2026"
-          />
-
-          <EducationCard
-            image="/icons/udemy.svg"
-            imageAlt="Udemy"
-            title="Mastering Data Modelling Fundamentals"
-            experience=""
-            location="Udemy"
-            date="June 2025"
-          />
-
-          <EducationCard
-            image="/icons/deeplearning.svg"
-            imageAlt="Stanford"
-            title="Machine Learning Specialization"
-            experience=""
-            location="Stanford University & DeepLearning.AI"
-            date="Sept 2024"
-          />
-
-          <EducationCard
-            image="/icons/ibmskills.svg"
-            imageAlt="IBM"
-            title="Data Science Specialization"
-            experience=""
-            location="IBM Skills Network"
-            date="June 2022"
-          />
-        </div>
+            {/* Entries are newest first, so the first one in each group is
+                the most recent and gets the open marker. */}
+            <ol className="education-timeline">
+              {group.entries.map((entry, position) => (
+                <EducationCard
+                  key={entry.id}
+                  image={entry.image}
+                  title={entry.title}
+                  location={entry.location}
+                  date={entry.date}
+                  isCurrent={position === 0}
+                />
+              ))}
+            </ol>
+          </div>
+        ))}
       </div>
     </section>
   );

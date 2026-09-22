@@ -1,73 +1,61 @@
+import { skillGroups } from "../data/skills.js";
 import "../styles/skillsSection.css";
 
-/* Reusable SkillCard component */
+// A single skill tile. The icon is decorative — the name sits beside it.
 function SkillCard({ name, icon }) {
   return (
     <div className="skill-card">
-      <img src={icon} alt={name} />
+      <img src={icon} alt="" loading="lazy" decoding="async" />
       <span>{name}</span>
     </div>
   );
 }
 
+// A capability with no logo, shown as a pill that sizes to its own text.
+function SkillPill({ name }) {
+  return <li className="skill-pill">{name}</li>;
+}
+
+// Skills section, rendered from src/data/skills.js.
 function SkillsSection() {
   return (
-    <section className="skills-section" id="programming-languages">
+    <section
+      className="skills-section section section-sunken fade-section"
+      id="skills"
+    >
       <div className="container">
-
-        <div className="section-heading">
+        <div className="section-heading fade-item">
+          <p className="eyebrow">Toolkit</p>
           <h2>Skills</h2>
-          <p>Technologies and tools I use across development and design.</p>
+          <p>
+            The tools I use to build websites, shape user experiences, manage
+            delivery, analyze data, and create practical AI workflows.
+          </p>
         </div>
 
-        {/* Programming Languages */}
-        <div className="skills-group">
-          <h3 className="skills-group-title">Programming Languages & Technologies</h3>
+        {skillGroups.map((group) => (
+          <div className="skills-group fade-item" key={group.id}>
+            <h3 className="group-title">{group.title}</h3>
 
-          <div className="skills-grid">
-            <SkillCard name="JavaScript" icon="/icons/javascript.svg" />
-            <SkillCard name="TypeScript" icon="/icons/typescript.svg" />
-
-            <SkillCard name="React" icon="/icons/react.svg" />
-            <SkillCard name="HTML" icon="/icons/html.svg" />
-            <SkillCard name="CSS" icon="/icons/css.svg" />
-
-            
-
-            <SkillCard name="Python" icon="/icons/python.svg" />
-            <SkillCard name="Java" icon="/icons/java.svg" />
-            <SkillCard name="SQL" icon="/icons/sql.svg" />
-            <SkillCard name="Linux" icon="/icons/linux.svg" />
-
-            <SkillCard name="LaTeX" icon="/icons/latex.svg" />
+            {group.variant === "text" ? (
+              <ul className="skills-pills">
+                {group.skills.map((skill) => (
+                  <SkillPill key={skill.name} name={skill.name} />
+                ))}
+              </ul>
+            ) : (
+              <div className="skills-grid">
+                {group.skills.map((skill) => (
+                  <SkillCard
+                    key={skill.name}
+                    name={skill.name}
+                    icon={skill.icon}
+                  />
+                ))}
+              </div>
+            )}
           </div>
-        </div>
-
-        {/* Design Tools */}
-        <div className="skills-group">
-          <h3 className="skills-group-title">Design Tools</h3>
-
-          <div className="skills-grid">
-            <SkillCard name="Figma" icon="/icons/figma.svg" />
-            <SkillCard name="Photoshop" icon="/icons/photoshop.svg" />
-            <SkillCard name="Illustrator" icon="/icons/illustrator.svg" />
-            <SkillCard name="Canva" icon="/icons/canva.svg" />
-          </div>
-        </div>
-
-        {/* Other Tools */}
-        <div className="skills-group">
-          <h3 className="skills-group-title">Other Tools</h3>
-
-          <div className="skills-grid">
-            <SkillCard name="Jupyter Notebook" icon="/icons/jupyter.svg" />
-            <SkillCard name="Power BI" icon="/icons/powerbi.svg" />
-
-            <SkillCard name="Matlab" icon="/icons/matlab.svg" />
-            <SkillCard name="Microsoft Office" icon="/icons/msoffice.svg" />
-          </div>
-        </div>
-
+        ))}
       </div>
     </section>
   );

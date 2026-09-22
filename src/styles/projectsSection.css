@@ -1,0 +1,14 @@
+/* Projects section shell. The cards themselves live in projectCard.css. */
+
+/* A single-column stack of full-width cards, not a grid of tiles. */
+.projects-grid {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-7);
+}
+
+@media (max-width: 700px) {
+  .projects-grid {
+    gap: var(--space-5);
+  }
+}

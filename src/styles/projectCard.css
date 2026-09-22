@@ -1,82 +1,344 @@
+/* Project card — the single source of truth for .project-* rules.
+   A full-width horizontal slab: image panel on the left, content right.
+   Full-width beats a tile grid here because there are only a handful of
+   projects and each one has a story to fit.
+
+   At rest the card is deliberately short: ordinal, title, subtitle, meta.
+   The description sits behind the See more toggle, so the section can be
+   scanned before it is read. */
+
 .project-card {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
+  display: grid;
+  grid-template-columns: minmax(0, 36%) minmax(0, 1fr);
+
+  background: var(--color-surface);
+  border: var(--border-hairline);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+  transition: border-color var(--transition-default);
 }
 
-.project-content {
-  padding: 28px;
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-  gap: 12px;
+/* No lift and no shadow growth — the card is defined by its hairline, so the
+   hairline is what responds. The image moves instead. */
+.project-card:hover {
+  border-color: var(--color-border-strong);
 }
 
-.project-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 12px;
-}
-
-.project-header-main {
-  display: flex;
-  flex-direction: column;
-  gap: 1px;
+/* --- Image panel ---------------------------------------------------------
+   The image fills its whole column, edge to edge. The card clips the outer
+   corners, so no radius is needed here. */
+.project-image-wrapper {
+  position: relative;
+  background: var(--color-accent-tint);
   min-width: 0;
+  overflow: hidden;
+  /* A collapsed card is short, so the panel needs a floor to stay a panel
+     rather than a strip. */
+  min-height: 240px;
+}
+
+/* Absolute, so the image never contributes its intrinsic height to the row.
+   Left in flow it drove the card to the image's own aspect ratio and left a
+   band of dead space beside the content. */
+.project-image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* Screenshots put their headline and navigation at the top left, so the
+     crop is anchored there — centring it clipped the first word. */
+  object-position: left top;
+  transition: transform var(--transition-slow);
+}
+
+.project-card:hover .project-image {
+  transform: scale(1.03);
+}
+
+/* --- Content ------------------------------------------------------------ */
+.project-content {
+  padding: var(--space-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  min-width: 0;
+}
+
+/* Title and subtitle read as one unit, so they sit closer than the gap the
+   content column uses between its other blocks. */
+.project-heading {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+/* The ordinal. Sized down and tracked out so it reads as a marker rather than
+   as part of the title. */
+.project-index {
+  font-family: var(--font-display);
+  font-size: var(--text-label);
+  font-weight: 600;
+  letter-spacing: var(--tracking-wide);
+  color: var(--color-text-faint);
 }
 
 .project-title {
   margin: 0;
-  font-size: 1.25rem;
-  line-height: 1.2;
+  font-size: var(--text-h3);
+  font-weight: 600;
+  letter-spacing: var(--tracking-snug);
+  line-height: 1.15;
   color: var(--color-text);
 }
 
-.project-role {
+/* The one-line outcome. This is the line that has to land, so it keeps the
+   accent while the description below it stays grey. */
+.project-subtitle {
   margin: 0;
-  font-size: 1rem;
+  font-size: var(--text-meta);
+  font-weight: 400;
+  line-height: 1.4;
+  color: var(--color-accent);
+}
+
+/* Meta strip: label over value, hairline dividers drawn by a 1px grid gap. */
+.project-meta {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+  gap: 1px;
+  background: var(--color-border);
+  border: var(--border-hairline);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+}
+
+.project-meta-item {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  padding: var(--space-3) var(--space-4);
+  background: var(--color-surface-sunken);
+  min-width: 0;
+}
+
+.project-meta-label {
+  font-family: var(--font-display);
+  font-size: var(--text-label);
   font-weight: 600;
-  color: var(--color-primary);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--color-text-faint);
   line-height: 1.3;
 }
 
-.project-date {
-  margin: 0;
-  font-size: 1rem;
-  color: var(--color-text-soft);
+.project-meta-value {
+  font-family: var(--font-display);
+  font-size: var(--text-small);
+  font-weight: 500;
+  color: var(--color-text);
   line-height: 1.3;
-  white-space: nowrap;
-  flex-shrink: 0;
-  padding-top: 2px;
+  overflow-wrap: anywhere;
+}
+
+/* --- Collapsible detail --------------------------------------------------
+   A 0fr/1fr grid row is what makes this animate — the content keeps its
+   natural height instead of needing a hardcoded max-height that would clip
+   longer descriptions. */
+.project-details {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows var(--transition-slow);
+}
+
+.project-details.is-open {
+  grid-template-rows: 1fr;
+}
+
+/* `min-height: 0` is load-bearing: a grid item defaults to `min-height: auto`,
+   which refuses to shrink below its content and leaves the collapsed row at
+   full height. */
+.project-details-inner {
+  overflow: hidden;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+/* The gap above the details row would still show when it is collapsed, so
+   the spacing is carried by the open state instead. */
+.project-details.is-open .project-details-inner {
+  padding-top: var(--space-2);
 }
 
 .project-description {
-  margin: 6px 0 0;
-  font-size: 1rem;
+  margin: 0;
+  font-size: var(--text-body);
+  line-height: 1.65;
+  color: var(--color-text-soft);
+  max-width: var(--measure);
+}
+
+/* A link inside the description. Underlined at rest — inside a paragraph of
+   grey body copy, color alone is not enough to read as a link. */
+.project-description-link {
+  color: var(--color-accent);
+  font-weight: 500;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: var(--color-accent-wash);
+  transition:
+    text-decoration-color var(--transition-default),
+    color var(--transition-default);
+}
+
+.project-description-link:hover {
+  color: var(--color-accent-hover);
+  text-decoration-color: var(--color-accent);
+}
+
+/* --- Highlights ----------------------------------------------------------
+   Labelled blocks under the description. An accent rule on the leading edge
+   ties them to the card without boxing them, which would put a card inside
+   a card. */
+.project-highlights {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  margin: 0;
+}
+
+.project-highlight {
+  border-left: 2px solid var(--color-accent-wash);
+  padding-left: var(--space-4);
+}
+
+.project-highlight dt {
+  font-family: var(--font-display);
+  font-size: var(--text-label);
+  font-weight: 600;
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--color-accent);
+  margin-bottom: var(--space-2);
+}
+
+.project-highlight dd {
+  margin: 0;
+  font-size: var(--text-small);
   line-height: 1.6;
   color: var(--color-text-soft);
+  max-width: var(--measure);
 }
 
-.project-button-wrap {
+/* --- Actions ------------------------------------------------------------ */
+.project-actions {
   margin-top: auto;
-  padding-top: 12px;
+  padding-top: var(--space-2);
   display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-3);
 }
 
-.project-button-wrap .btn {
+/* The toggle is a quiet text button — the filled link beside it is the
+   primary action, and two filled buttons would compete. */
+.project-toggle {
   display: inline-flex;
   align-items: center;
-  justify-content: center;
+  gap: var(--space-2);
+
+  padding: 14px 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+
+  font-family: var(--font-display);
+  font-size: var(--text-small);
+  font-weight: 600;
+  letter-spacing: var(--tracking-snug);
+  color: var(--color-text-soft);
+
+  transition: color var(--transition-default);
 }
 
-@media (max-width: 700px) {
-  .project-header {
-    flex-direction: column;
-    gap: 4px;
+.project-toggle:hover {
+  color: var(--color-accent);
+}
+
+/* The chevron flips to point up once the panel is open. */
+.project-toggle-icon {
+  display: inline-block;
+  transition: transform var(--transition-default);
+}
+
+.project-toggle[aria-expanded="true"] .project-toggle-icon {
+  transform: rotate(180deg);
+}
+
+/* The arrow steps forward on hover — the only thing on the card that moves
+   horizontally, which is what makes it read as "go". */
+.project-button-arrow {
+  transition: transform var(--transition-default);
+}
+
+.project-actions .btn:hover .project-button-arrow {
+  transform: translateX(3px);
+}
+
+/* --- Responsive --------------------------------------------------------- */
+@media (max-width: 900px) {
+  /* The slab flips vertical: image on top, content below. */
+  .project-card {
+    grid-template-columns: 1fr;
   }
 
-  .project-date {
-    padding-top: 0;
+  /* Stacked, the panel becomes a banner, so it takes a ratio rather than
+     stretching to a height there is no longer a second column to match. */
+  .project-image-wrapper {
+    min-height: 0;
+  }
+
+  .project-image {
+    position: static;
+    height: auto;
+    aspect-ratio: 16 / 9;
+  }
+
+  .project-content {
+    padding: var(--space-5);
+  }
+}
+
+@media (max-width: 480px) {
+  .project-content {
+    padding: var(--space-4);
+  }
+
+  .project-subtitle {
+    font-size: var(--text-body);
+  }
+
+  .project-meta {
+    grid-template-columns: 1fr;
+  }
+
+  /* Side by side these wrap awkwardly at this width, so each takes a row. */
+  .project-actions {
+    align-items: stretch;
+    flex-direction: column-reverse;
+    gap: var(--space-2);
+  }
+
+  .project-toggle {
+    justify-content: center;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .project-card:hover .project-image {
+    transform: none;
   }
 }

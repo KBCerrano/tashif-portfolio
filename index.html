@@ -1,20 +1,74 @@
 <!doctype html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<head>
-  <meta charset="UTF-8" />
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Tashif Khan | Portfolio</title>
-<meta
-  name="description"
-  content="Portfolio website for Tashif Khan showcasing completed projects, technical work, and web development experience."
-/>
-</head>
+    <title>Tashif Khan | Portfolio</title>
+    <meta
+      name="description"
+      content="Tashif Khan is an Ottawa-based frontend developer, UX/UI designer, and project manager who builds React websites and practical AI workflows."
+    />
+    <link rel="canonical" href="https://www.tashifkhan.ca/" />
+    <meta name="theme-color" content="#ffffff" />
 
-<body>
-  <div id="root"></div>
-  <script type="module" src="/src/main.jsx"></script>
-</body>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
+    <!-- Fonts: preconnect first so the font request starts without waiting on CSS.
+       Clash Grotesk (Fontshare) carries both headings and body — one family. -->
+    <link rel="preconnect" href="https://api.fontshare.com" />
+    <link rel="preconnect" href="https://cdn.fontshare.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://api.fontshare.com/v2/css?f%5B%5D=clash-grotesk@400,500,600,700&display=swap"
+    />
+    <!-- Clash Display 700 is used only for the hero name. Fontshare drops the
+       second family when two are combined in one request, so it needs its own link. -->
+    <link
+      rel="stylesheet"
+      href="https://api.fontshare.com/v2/css?f%5B%5D=clash-display@700&display=swap"
+    />
+
+    <!-- Link previews (LinkedIn, Slack, iMessage, X) -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Tashif Khan" />
+    <meta
+      property="og:title"
+      content="Tashif Khan | Frontend Developer, UX/UI Designer & Project Manager"
+    />
+    <meta
+      property="og:description"
+      content="Tashif Khan is an Ottawa-based frontend developer, UX/UI designer, and project manager who builds React websites and practical AI workflows."
+    />
+    <meta property="og:url" content="https://www.tashifkhan.ca/" />
+    <meta
+      property="og:image"
+      content="https://www.tashifkhan.ca/og-image.jpg"
+    />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta
+      property="og:image:alt"
+      content="Tashif Khan — Frontend Developer, UX/UI Designer and Project Manager"
+    />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="Tashif Khan | Frontend Developer, UX/UI Designer & Project Manager"
+    />
+    <meta
+      name="twitter:description"
+      content="Tashif Khan is an Ottawa-based frontend developer, UX/UI designer, and project manager who builds React websites and practical AI workflows."
+    />
+    <meta
+      name="twitter:image"
+      content="https://www.tashifkhan.ca/og-image.jpg"
+    />
+  </head>
+
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
 </html>
