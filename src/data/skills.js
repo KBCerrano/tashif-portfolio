@@ -64,6 +64,25 @@ export const skillGroups = [
     ],
   },
   {
+    id: "claude-certificates",
+    title: "Claude Certificates by Anthropic",
+    variant: "text",
+    // Nine of them — collapsed by default so the list does not bury the
+    // groups below it.
+    collapsible: true,
+    skills: [
+      { name: "Claude 101" },
+      { name: "Claude Code 101" },
+      { name: "Claude Platform 101" },
+      { name: "Introduction to Claude Cowork" },
+      { name: "Claude with the Anthropic API" },
+      { name: "Introduction to agent skills" },
+      { name: "Introduction to subagents" },
+      { name: "Introduction to Model Context Protocol" },
+      { name: "Model Context Protocol: Advanced Topics" },
+    ],
+  },
+  {
     id: "delivery",
     title: "Project Management & Delivery",
     variant: "text",

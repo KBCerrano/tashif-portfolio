@@ -80,7 +80,9 @@ function ProjectCard({
           // `inert` keeps the collapsed copy out of the tab order and away
           // from screen readers; the row animation is handled in CSS.
           <div
-            className={`project-details ${isExpanded ? "is-open" : ""}`}
+            className={`project-details collapsible ${
+              isExpanded ? "is-open" : ""
+            }`}
             id={detailsId}
             inert={!isExpanded}
           >

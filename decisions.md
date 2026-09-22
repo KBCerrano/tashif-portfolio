@@ -41,6 +41,26 @@ be recovered from the code later.
 
 # Log
 
+## 2026-09-22 — One shared collapsible, and it no longer animates height
+
+**Decision:** The show/hide used by project cards, the Claude certificate
+group, and the timeline course lists is a single `.collapsible` utility in
+`global.css`. The row change is instant; only the content fades.
+
+**Why:** Transitioning `grid-template-rows` towards `1fr` sets up a feedback
+loop — the resolved track size depends on the content, which depends on the
+track size. Measured on a project card: 42px of an eventual 354px after 900ms,
+creeping to full height over several seconds. It shipped that way this morning.
+Snapping the height and fading the content reads as one movement and behaves
+identically no matter how much is inside the panel.
+
+**Also:** every panel sets `inert` while closed, so collapsed copy stays out of
+the tab order and away from screen readers, and each toggle carries
+`aria-expanded` / `aria-controls`.
+
+**Affects:** src/styles/global.css, projectCard.css, skillsSection.css,
+educationSection.css, ProjectCard.jsx, SkillsSection.jsx, EducationCard.jsx
+
 ## 2026-09-22 — Deploys run from GitHub Actions, not by hand
 
 **Decision:** `.github/workflows/deploy.yml` lints, builds, and force-pushes

@@ -182,6 +182,46 @@ p {
   transform: translateY(0);
 }
 
+/* --- Collapsible ---------------------------------------------------------
+   Shared show/hide used by the project cards, the certificate list, and the
+   course lists in the timeline.
+
+   A `0fr`/`1fr` grid row gives the content its natural height without a
+   hardcoded max-height that would clip whichever item happens to be longest.
+   `min-height: 0` on the child is load-bearing — a grid item defaults to
+   `min-height: auto` and refuses to shrink below its content, which leaves
+   the collapsed row at full height.
+
+   The row change is deliberately NOT transitioned. Animating
+   grid-template-rows towards `1fr` sets up a feedback loop: the resolved
+   track size depends on the content, which depends on the track size, so the
+   panel creeps towards its final height over several seconds instead of the
+   400ms asked for. Measured at ~42px of 354px after 900ms. The height snaps
+   and the content fades in instead, which reads as one movement and is the
+   same on every panel regardless of how much is inside it.
+
+   Whatever uses this should also set `inert` while closed, so the hidden
+   copy stays out of the tab order and away from screen readers. */
+.collapsible {
+  display: grid;
+  grid-template-rows: 0fr;
+}
+
+.collapsible.is-open {
+  grid-template-rows: 1fr;
+}
+
+.collapsible > * {
+  overflow: hidden;
+  min-height: 0;
+  opacity: 0;
+  transition: opacity var(--transition-default);
+}
+
+.collapsible.is-open > * {
+  opacity: 1;
+}
+
 /* --- Buttons ------------------------------------------------------------ */
 .btn {
   display: inline-flex;

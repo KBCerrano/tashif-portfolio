@@ -31,6 +31,7 @@ function EducationSection() {
                   location={entry.location}
                   date={entry.date}
                   isCurrent={position === 0}
+                  certificates={entry.certificates}
                 />
               ))}
             </ol>
