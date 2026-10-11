@@ -6,17 +6,8 @@
   margin-bottom: var(--space-8);
 }
 
-.contact-invite {
-  margin: var(--space-4) 0 var(--space-6);
-  font-size: var(--text-lead);
-  line-height: 1.45;
-  letter-spacing: var(--tracking-snug);
-  color: var(--color-text-soft);
-  max-width: var(--measure);
-}
-
 .contact-lead h2 {
-  margin: 0;
+  margin: 0 0 var(--space-6);
   font-size: var(--text-h2);
   font-weight: 600;
   letter-spacing: var(--tracking-tight);
@@ -87,14 +78,14 @@
 }
 
 .contact-item svg {
-  font-size: 1.1rem;
+  font-size: 1.6rem;
   color: var(--color-accent);
-  margin-bottom: var(--space-2);
+  margin-bottom: var(--space-3);
 }
 
 .contact-item span {
   font-family: var(--font-display);
-  font-size: var(--text-label);
+  font-size: var(--text-small);
   text-transform: uppercase;
   letter-spacing: var(--tracking-wide);
   font-weight: 600;
@@ -103,7 +94,7 @@
 
 .contact-item p {
   margin: 0;
-  font-size: var(--text-small);
+  font-size: var(--text-h4);
   font-weight: 500;
   color: var(--color-text);
   min-width: 0;

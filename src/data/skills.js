@@ -45,39 +45,4 @@ export const skillGroups = [
       { name: "Microsoft Office", icon: "/icons/msoffice.svg" },
     ],
   },
-  {
-    id: "version-control",
-    title: "Version Control & Collaboration",
-    variant: "text",
-    skills: [{ name: "Git" }, { name: "GitHub" }],
-  },
-  {
-    id: "ai",
-    title: "AI Workflows & Automation",
-    variant: "text",
-    skills: [
-      { name: "Claude AI" },
-      { name: "Reusable Claude Skills" },
-      { name: "Prompt and Workflow Design" },
-      { name: "AI-Assisted Development" },
-      { name: "Website Quality Evaluation" },
-    ],
-  },
-  {
-    id: "delivery",
-    title: "Project Management & Delivery",
-    variant: "text",
-    skills: [
-      // Jira is not repeated here — it has an icon tile under Other Tools.
-      { name: "Requirements Gathering" },
-      { name: "Task Breakdown & Assignment" },
-      { name: "Project Plans & Timelines" },
-      { name: "Milestone Tracking" },
-      { name: "International Team Coordination" },
-      { name: "Client & Stakeholder Communication" },
-      { name: "Design Review" },
-      { name: "QA Coordination" },
-      { name: "Deployment Planning" },
-    ],
-  },
 ];

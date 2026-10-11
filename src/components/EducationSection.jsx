@@ -11,8 +11,8 @@ function EducationSection() {
           <p className="eyebrow">Background</p>
           <h2>Education &amp; Certifications</h2>
           <p>
-            My academic background and certifications across web development,
-            UX/UI, data analysis, and AI work.
+            My academic background and certifications across project management,
+            AI workflows, web development, UX/UI, and data analysis.
           </p>
         </div>
 

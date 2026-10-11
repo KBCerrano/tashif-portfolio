@@ -51,25 +51,22 @@ export const roles = {
 
     claim: (
       <>
-        <span className="highlight">Web design</span>,{" "}
-        <span className="highlight">frontend development</span>,{" "}
-        <span className="highlight">project delivery</span>, and practical{" "}
-        <span className="highlight">AI workflows</span>.
+        <span className="highlight">Project management</span>,{" "}
+        <span className="highlight">web design</span>,{" "}
+        <span className="highlight">frontend development</span>, and{" "}
+        <span className="highlight">AI workflow creation</span>.
       </>
     ),
 
     evidence: (
       <>
-        I work in <span className="highlight">React</span>,{" "}
-        <span className="highlight">JavaScript</span>,{" "}
-        <span className="highlight">HTML</span>, and{" "}
-        <span className="highlight">CSS</span>, turning designs into clean,
-        maintainable code, and help shape{" "}
-        <span className="highlight">SEO-ready pages</span> and{" "}
-        <span className="highlight">booking flows</span>. I use AI tools where
-        they genuinely speed up research, development, and content work. Because
-        I also work in UX, I think about whether a site is easy to use, not just
-        whether it looks right.
+        I plan <span className="highlight">website projects</span> and turn
+        client requirements into tasks, milestones, and timelines, even when the
+        developers are overseas. I build{" "}
+        <span className="highlight">AI skills and workflows</span> that speed up
+        your research, development, and quality assurance. And I code the sites
+        myself. Since I work in UX too, I think about whether a site is easy to
+        use, not just whether it looks right.
       </>
     ),
 
@@ -108,4 +105,4 @@ export const roles = {
 };
 
 // Render order of the role switcher.
-export const roleOrder = ["frontend", "ux", "pm"];
+export const roleOrder = ["pm", "frontend", "ux"];

@@ -31,9 +31,7 @@ function AboutSection({ selectedRole }) {
           <div className="about-content fade-item">
             <p className="eyebrow">About</p>
 
-            <h2 className="about-title">
-              Design and engineering, from the same person.
-            </h2>
+            <h2 className="about-title">Plan, build, design.</h2>
 
             {/* Keyed on the role so React swaps the text rather than
                 reconciling it in place, which lets the fade restart. */}

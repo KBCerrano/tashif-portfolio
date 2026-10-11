@@ -60,14 +60,6 @@ function ContactSection() {
 
           <h2>Ready to work.</h2>
 
-          {/* The availability list moved out of the heading when it became a
-              two-word statement — it reads as the supporting line now. */}
-          <p className="contact-invite">
-            Available for frontend, UX/UI, project-management, web-delivery, and
-            AI workflow work. If you are building something and need help
-            getting it launched, get in touch.
-          </p>
-
           <a className="contact-email" href={`mailto:${EMAIL}`}>
             <FaEnvelope aria-hidden="true" />
             <span>{EMAIL}</span>
